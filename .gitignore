@@ -35,10 +35,17 @@ yarn-error.log
 /connect.lock
 /coverage
 /libpeerconnection.log
+npm-debug.log
 testem.log
 /typings
 __screenshots__/
+/.angular
+
+# e2e
+/e2e/*.js
+/e2e/*.map
 
 # System files
 .DS_Store
 Thumbs.db
+package-lock.json
