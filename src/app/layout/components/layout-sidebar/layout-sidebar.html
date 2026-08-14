@@ -1,13 +1,6 @@
-<p>
-───────────────
-
-📊 Dashboard
-
-🎫 Tickets
-
-👤 Usuarios
-
-⚙ Configuración
-
-───────────────
-</p>
+<p>─────────────── 📊 Dashboard 🎫 Tickets 👤 Usuarios ⚙ Configuración ───────────────</p>
+@for (item of menuItems; track item.route) {
+  <a [routerLink]="item.route">
+    {{ item.label }}
+  </a>
+}
