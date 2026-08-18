@@ -1,0 +1,37 @@
+@use "../../../styles/variables" as *;
+
+.sidebar{
+
+    width:260px;
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    background:white;
+
+    border-right:1px solid $border-color;
+
+}
+
+.logo{
+
+    padding:24px;
+    font-size:22px;
+    font-weight:bold;
+
+}
+
+mat-nav-list{
+
+    flex:1;
+
+}
+
+.sidebar-footer{
+
+    padding:20px;
+
+    border-top:1px solid $border-color;
+
+}

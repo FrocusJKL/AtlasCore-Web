@@ -1,6 +1,47 @@
-<p>─────────────── 📊 Dashboard 🎫 Tickets 👤 Usuarios ⚙ Configuración ───────────────</p>
-@for (item of menuItems; track item.route) {
-  <a [routerLink]="item.route">
-    {{ item.label }}
-  </a>
-}
+<aside class="sidebar">
+
+    <div class="logo">
+        <h2>TicketFlow</h2>
+    </div>
+
+    <mat-nav-list>
+
+        @for(item of menuItems; track item.label){
+
+            <a
+                mat-list-item
+                [routerLink]="item.route">
+
+                <mat-icon matListItemIcon>
+                    {{item.icon}}
+                </mat-icon>
+
+                <span matListItemTitle>
+                    {{item.label}}
+                </span>
+
+            </a>
+
+        }
+
+    </mat-nav-list>
+
+    <div class="sidebar-footer">
+
+        <p>Juan Pablo</p>
+
+        <button mat-button>
+
+            <mat-icon>
+
+                logout
+
+            </mat-icon>
+
+            Cerrar sesión
+
+        </button>
+
+    </div>
+
+</aside>
