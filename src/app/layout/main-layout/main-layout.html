@@ -1,6 +1,6 @@
-<div class="main-layout">
+<div class="main-layout" [class.sidebar-collapsed]="sidebarCollapsed">
 
-    <layout-sidebar />
+    <layout-sidebar (collapsedChange)="sidebarCollapsed = $event" />
 
     <div class="main-shell">
 

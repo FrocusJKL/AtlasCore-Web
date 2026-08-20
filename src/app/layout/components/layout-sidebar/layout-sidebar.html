@@ -1,12 +1,22 @@
-<aside class="sidebar">
+<aside class="sidebar" [class.collapsed]="collapsed">
 
     <div class="logo">
         <span class="logo-mark">A</span>
-        <div>
+        <div class="logo-copy">
             <strong>Atlas</strong><span>Core</span>
             <small>Panel de gestión</small>
         </div>
     </div>
+
+    <button
+        mat-icon-button
+        class="collapse-button"
+        type="button"
+        [attr.aria-label]="collapsed ? 'Expandir menú' : 'Plegar menú'"
+        [attr.aria-expanded]="!collapsed"
+        (click)="toggleCollapsed()">
+        <mat-icon>{{ collapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+    </button>
 
     <nav aria-label="Navegación principal">
 
@@ -27,7 +37,7 @@
                     {{item.icon}}
                 </mat-icon>
 
-                <span matListItemTitle>
+                <span matListItemTitle class="nav-label">
                     {{item.label}}
                 </span>
 
@@ -43,7 +53,7 @@
 
         <div class="user-profile">
             <span class="avatar">JP</span>
-            <div>
+            <div class="user-copy">
                 <strong>Juan Pablo</strong>
                 <small>Administrador</small>
             </div>
@@ -53,7 +63,7 @@
 
             <mat-icon>logout</mat-icon>
 
-            Cerrar sesión
+            <span class="logout-label">Cerrar sesión</span>
 
         </button>
 

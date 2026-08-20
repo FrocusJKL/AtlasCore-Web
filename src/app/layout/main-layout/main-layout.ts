@@ -14,4 +14,6 @@ import { LayoutFooter } from '../components/layout-footer/layout-footer';
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',
 })
-export class MainLayout {}
+export class MainLayout {
+  sidebarCollapsed = false;
+}
