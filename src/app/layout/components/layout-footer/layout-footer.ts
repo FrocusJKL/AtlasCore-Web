@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './layout-footer.html',
   styleUrl: './layout-footer.scss',
 })
-export class LayoutFooter {}
 export class LayoutFooter {
   readonly appName = 'AtlasCore';
   readonly appVersion = '0.1.0';
