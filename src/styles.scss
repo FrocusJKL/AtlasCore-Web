@@ -26,6 +26,12 @@ html {
   ));
 }
 
+app-root {
+  display: block;
+  height: 100%;
+  min-height: 100dvh;
+}
+
 body {
   margin: 0;
   height: 100%;

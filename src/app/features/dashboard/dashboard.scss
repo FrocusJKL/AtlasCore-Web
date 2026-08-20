@@ -1,13 +1,15 @@
+.module-page {
+	min-height: 100%;
+}
+
 .page-header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	min-height: 96px;
-	padding: 1.5rem 1.75rem;
+	min-height: 72px;
+	padding: .85rem clamp(1rem, 2vw, 2rem);
 	background: #ffffff;
-	border: 1px solid var(--border-color);
-	border-radius: var(--border-radius);
-	box-shadow: var(--shadow);
+	border-bottom: 1px solid var(--border-color);
 }
 
 .eyebrow,
@@ -30,5 +32,5 @@ h1 {
 }
 
 .page-content {
-	margin-top: 1.5rem;
+	padding: 1.25rem clamp(1rem, 2vw, 2rem);
 }

@@ -1,5 +1,9 @@
 @use "../../../../styles/variables" as *;
 
+:host {
+	display: block;
+}
+
 .footer {
 	min-height: 52px;
 	padding: .85rem clamp(1.25rem, 3vw, 3rem);
