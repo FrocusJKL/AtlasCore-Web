@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'layout-sidebar',
-  imports: [RouterLink, MatListModule, MatIconModule],
+  imports: [RouterLink, RouterLinkActive, MatListModule, MatIconModule, MatButtonModule],
   templateUrl: './layout-sidebar.html',
   styleUrl: './layout-sidebar.scss',
 })

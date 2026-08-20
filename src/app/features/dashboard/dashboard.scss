@@ -1,0 +1,34 @@
+.page-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 96px;
+	padding: 1.5rem 1.75rem;
+	background: #ffffff;
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	box-shadow: var(--shadow);
+}
+
+.eyebrow,
+.subtitle {
+	margin: 0;
+	color: var(--text-secondary);
+	font-size: .8rem;
+}
+
+.eyebrow {
+	margin-bottom: .3rem;
+	color: var(--primary);
+	font-weight: 700;
+}
+
+h1 {
+	margin: 0;
+	color: var(--text-primary);
+	font-size: clamp(1.45rem, 2vw, 1.9rem);
+}
+
+.page-content {
+	margin-top: 1.5rem;
+}

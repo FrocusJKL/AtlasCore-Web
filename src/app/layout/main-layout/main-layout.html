@@ -1,15 +1,17 @@
-<header></header>
+<div class="main-layout">
 
-<main>
+    <layout-sidebar />
 
-    <layout-sidebar></layout-sidebar>
+    <div class="main-shell">
 
-    <section>
+        <main class="content">
 
-        <router-outlet/>
+            <router-outlet />
 
-    </section>
+        </main>
 
-</main>
+        <layout-footer />
 
-<footer></footer>
+    </div>
+
+</div>
