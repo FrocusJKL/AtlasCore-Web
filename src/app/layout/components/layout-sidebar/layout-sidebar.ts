@@ -17,11 +17,6 @@ export class LayoutSidebar {
       route: '/dashboard',
     },
     {
-      label: 'Tickets',
-      icon: 'confirmation_number',
-      route: '/tickets',
-    },
-    {
       label: 'Usuarios',
       icon: 'group',
       route: '/users',
