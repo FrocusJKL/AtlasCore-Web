@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "TicketFlow": {
+    "AtlasCore": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "TicketFlow:build:production"
+              "buildTarget": "AtlasCore:build:production"
             },
             "development": {
-              "buildTarget": "TicketFlow:build:development"
+              "buildTarget": "AtlasCore:build:development"
             }
           },
           "defaultConfiguration": "development"
