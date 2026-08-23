@@ -7,10 +7,10 @@
 
 
 
-@use 'styles/variables' as v;
-@use 'styles/mixins';
-@use 'styles/theme';
-@use 'styles/utilities';
+@use 'styles/abstracts/variables' as v;
+@use 'styles/abstracts/mixins';
+@use 'styles/abstracts/theme';
+@use 'styles/abstracts/utilities';
 
 
 html {

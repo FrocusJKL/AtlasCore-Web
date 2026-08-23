@@ -1,4 +1,4 @@
-@use "../../../../styles/variables" as *;
+@use "../../../../styles/abstracts/variables" as *;
 @use "sass:color";
 
 .sidebar{
@@ -65,8 +65,6 @@
     top: 50%;
     right: -18px;
     z-index: 2;
-    width: 36px;
-    height: 36px;
     transform: translateY(-50%);
     background: #ffffff;
     border: 1px solid $border-color;

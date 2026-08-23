@@ -1,11 +1,11 @@
-@use "../../../../styles/variables" as *;
+@use "../../../../styles/abstracts/variables" as *;
 
 :host {
 	display: block;
 }
 
 .footer {
-	min-height: 52px;
+	min-height: 30px;
 	padding: .85rem clamp(1.25rem, 3vw, 3rem);
 	display: flex;
 	align-items: center;

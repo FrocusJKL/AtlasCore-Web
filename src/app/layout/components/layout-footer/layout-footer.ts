@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { APPLICATION_CONFIG } from '../../../core/config/aplication.config'
 
 @Component({
   selector: 'layout-footer',
@@ -6,8 +7,14 @@ import { Component } from '@angular/core';
   templateUrl: './layout-footer.html',
   styleUrl: './layout-footer.scss',
 })
-export class LayoutFooter {
-  readonly appName = 'AtlasCore';
-  readonly appVersion = '0.1.0';
-  readonly environment = 'Development';
+
+export class LayoutFooter implements OnInit {
+  constructor (){}
+  readonly appConfig = APPLICATION_CONFIG
+
+  ngOnInit(): void {
+    
+    console.log(this.appConfig)
+  }
+  
 }
