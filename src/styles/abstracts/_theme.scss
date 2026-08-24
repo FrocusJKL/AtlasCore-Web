@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+
+@use '../themes/light';
+@use '../themes/dark';
+
+@mixin material-theme($theme-type) {
+	@include mat.theme((
+		color: (
+			primary: mat.$magenta-palette,
+			tertiary: mat.$violet-palette,
+			theme-type: $theme-type,
+		),
+		typography: Roboto,
+		density: 0,
+	));
+}

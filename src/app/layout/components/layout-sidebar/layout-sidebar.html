@@ -67,6 +67,15 @@
 
         </button>
 
+        <button
+            mat-button
+            type="button"
+            (click)="themeService.toggle()"
+            [attr.aria-label]="themeService.theme() === 'dark' ? 'Usar tema claro' : 'Usar tema oscuro'">
+            <mat-icon>{{ themeService.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+            <span class="logout-label">{{ themeService.theme() === 'dark' ? 'Tema claro' : 'Tema oscuro' }}</span>
+        </button>
+
     </div>
 
 </aside>

@@ -8,26 +8,26 @@
 	justify-content: space-between;
 	min-height: 72px;
 	padding: .85rem clamp(1rem, 2vw, 2rem);
-	background: #ffffff;
-	border-bottom: 1px solid var(--border-color);
+	background: var(--app-surface);
+	border-bottom: 1px solid var(--app-border);
 }
 
 .eyebrow,
 .subtitle {
 	margin: 0;
-	color: var(--text-secondary);
+	color: var(--app-text-secondary);
 	font-size: .8rem;
 }
 
 .eyebrow {
 	margin-bottom: .3rem;
-	color: var(--primary);
+	color: var(--app-text-primary);
 	font-weight: 700;
 }
 
 h1 {
 	margin: 0;
-	color: var(--text-primary);
+	color: var(--app-text-primary);
 	font-size: clamp(1.45rem, 2vw, 1.9rem);
 }
 

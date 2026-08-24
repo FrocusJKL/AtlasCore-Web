@@ -10,10 +10,10 @@
     display:flex;
     flex-direction:column;
 
-    background: #ffffff;
+    background: var(--app-surface);
 
-    border-right:1px solid $border-color;
-    box-shadow: 4px 0 18px rgba(15, 23, 42, .04);
+    border-right: 1px solid var(--app-border);
+    box-shadow: var(--app-shadow);
     position: relative;
     z-index: 1;
     transition: width 180ms ease;
@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     gap: .75rem;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid var(--app-border);
     overflow: hidden;
 
     strong { color: $primary; }
@@ -35,7 +35,7 @@
     small {
         display: block;
         margin-top: .2rem;
-        color: $text-secondary;
+        color: var(--app-text-secondary);
         font-size: .7rem;
         font-weight: 500;
     }
@@ -66,9 +66,9 @@
     right: -18px;
     z-index: 2;
     transform: translateY(-50%);
-    background: #ffffff;
-    border: 1px solid $border-color;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, .12);
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
+    box-shadow: var(--app-shadow);
     color: $primary;
 }
 
@@ -117,7 +117,7 @@
 
 .section-label {
     margin: 1.25rem 1.5rem .5rem;
-    color: $text-secondary;
+    color: var(--app-text-secondary);
     font-size: .7rem;
     font-weight: 700;
     letter-spacing: .06em;
@@ -147,7 +147,7 @@ mat-nav-list{
     margin-top: auto;
     padding: 1rem 1rem 1.25rem;
 
-    border-top:1px solid $border-color;
+    border-top: 1px solid var(--app-border);
 
 }
 
@@ -157,11 +157,11 @@ mat-nav-list{
     gap: .7rem;
     padding: .65rem;
     border-radius: 10px;
-    background: $background;
+    background: var(--app-background);
 
-    strong, small { display: block; }
+    strong, small { display: block; color: var(--app-text-primary); }
     strong { font-size: .85rem; }
-    small { margin-top: .15rem; color: $text-secondary; font-size: .72rem; }
+    small { margin-top: .15rem; color: var(--app-text-secondary); font-size: .72rem; }
 }
 
 .avatar {
@@ -176,7 +176,7 @@ mat-nav-list{
     width: 100%;
     justify-content: flex-start;
     margin-top: .6rem;
-    color: $text-secondary;
+    color: var(--app-text-secondary);
     mat-icon { margin-right: .5rem; }
 }
 

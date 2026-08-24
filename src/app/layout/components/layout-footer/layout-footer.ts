@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { APPLICATION_CONFIG } from '../../../core/config/aplication.config'
+import { APPLICATION_CONFIG } from '../../../core/config/aplication.config';
 
 @Component({
   selector: 'layout-footer',
@@ -7,14 +7,10 @@ import { APPLICATION_CONFIG } from '../../../core/config/aplication.config'
   templateUrl: './layout-footer.html',
   styleUrl: './layout-footer.scss',
 })
-
 export class LayoutFooter implements OnInit {
-  constructor (){}
-  readonly appConfig = APPLICATION_CONFIG
+  constructor() {}
 
-  ngOnInit(): void {
-    
-    console.log(this.appConfig)
-  }
-  
+  readonly config = APPLICATION_CONFIG;
+
+  ngOnInit(): void {}
 }

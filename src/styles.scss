@@ -3,10 +3,6 @@
 // components according to the Material 3 design spec.
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
-@use '@angular/material' as mat;
-
-
-
 @use 'styles/abstracts/variables' as v;
 @use 'styles/abstracts/mixins';
 @use 'styles/abstracts/theme';
@@ -15,15 +11,14 @@
 
 html {
   height: 100%;
+}
 
-  @include mat.theme((
-    color: (
-      primary: mat.$magenta-palette,
-      tertiary: mat.$violet-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
+.light-theme {
+  @include theme.material-theme(light);
+}
+
+.dark-theme {
+  @include theme.material-theme(dark);
 }
 
 app-root {
@@ -36,9 +31,10 @@ body {
   margin: 0;
   height: 100%;
 
-  background: v.$background;
-  color: v.$text-primary;
+  background: var(--app-background, v.$background);
+  color: var(--app-text-primary, v.$text-primary);
   font-family: Roboto, sans-serif;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 *,

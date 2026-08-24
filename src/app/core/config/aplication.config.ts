@@ -1,11 +1,9 @@
 export const APPLICATION_CONFIG = {
+  name: 'AtlasCore',
 
-    name: "AtlasCoresssssssss TEST",
+  version: '0.1.0',
 
-    version: "0.1.0",
+  company: 'Atlas',
 
-    company: "Atlas",
-
-    environment: "Development"
-
+  environment: 'Development',
 };
