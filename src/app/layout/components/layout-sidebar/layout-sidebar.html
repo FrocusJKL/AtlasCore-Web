@@ -22,11 +22,12 @@
 
         <p class="section-label">Menú principal</p>
 
-        <mat-nav-list>
+        <mat-nav-list class="nav-list">
 
             @for (item of menuItems; track item.id) {
                 @if (!hasChildren(item)) {
                     <a
+                        class="nav-item"
                         mat-list-item
                         [routerLink]="item.route"
                         routerLinkActive="active"
@@ -43,7 +44,7 @@
                     <div class="nav-group">
                         <button
                             type="button"
-                            class="group-toggle"
+                            class="nav-item nav-group-toggle"
                             (click)="toggleGroup(item)">
                             <mat-icon>{{ item.icon }}</mat-icon>
                             <span class="nav-label">{{ item.label }}</span>
@@ -51,9 +52,10 @@
                         </button>
 
                         @if (item.expanded !== false) {
-                            <div class="group-content">
+                            <div class="nav-group-items">
                                 @for (child of item.children ?? item.modules ?? []; track child.id) {
                                     <a
+                                        class="nav-item nav-child-item"
                                         mat-list-item
                                         [routerLink]="child.route"
                                         routerLinkActive="active"

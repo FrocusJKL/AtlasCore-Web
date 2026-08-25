@@ -22,8 +22,8 @@
 
 .logo{
 
-    min-height: 98px;
-    padding: 1.25rem 1.5rem;
+    min-height: 78px;
+    padding: 1rem 1.15rem;
     display: flex;
     align-items: center;
     gap: .75rem;
@@ -57,13 +57,13 @@
     background: var(--app-primary);
     color: white;
     font-size: 1.2rem;
-
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 
 .collapse-button {
     position: absolute;
     top: 50%;
-    right: -18px;
+    right: -20px;
     z-index: 2;
     transform: translateY(-50%);
     background: var(--app-surface);
@@ -86,13 +86,19 @@
         display: none;
     }
 
-    mat-nav-list {
+    .nav-list {
         padding-inline: .5rem;
+    }
 
-        a {
-            justify-content: center;
-            padding-inline: 0;
-        }
+    .nav-item {
+        justify-content: center;
+        padding-inline: 0;
+    }
+
+    .nav-group-items {
+        padding-left: 0;
+        margin-left: 0;
+        border-left: 0;
     }
 
     .sidebar-footer {
@@ -116,75 +122,92 @@
 }
 
 .section-label {
-    margin: 1.25rem 1.5rem .5rem;
+    margin: 1.15rem 1.2rem .45rem;
     color: var(--app-text-secondary);
-    font-size: .7rem;
+    font-size: .68rem;
     font-weight: 700;
-    letter-spacing: .06em;
+    letter-spacing: .08em;
     text-transform: uppercase;
-
 }
 
-.nav-group {
-    margin: .25rem 0;
+.nav-list {
+    padding: 0 .65rem;
 }
 
-.group-toggle {
-    width: 100%;
+.nav-item,
+.nav-group-toggle {
     display: flex;
     align-items: center;
     gap: .75rem;
-    padding: .7rem .85rem;
+    min-height: 44px;
     border: 0;
     border-radius: 10px;
+    color: var(--app-text-secondary);
     background: transparent;
-    color: var(--app-text-primary);
     text-align: left;
     cursor: pointer;
-    transition: background-color 160ms ease, color 160ms ease;
-
-    &:hover {
-        background: rgba(var(--app-primary-rgb), 0.08);
-        color: var(--app-primary);
-    }
-
-    .chevron {
-        margin-left: auto;
-        font-size: 1.1rem;
-    }
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
-.group-content {
-    margin-top: .1rem;
-    padding-left: .85rem;
-
-    a {
-        margin-left: .25rem;
-    }
+.nav-item {
+    width: 100%;
+    padding: .7rem .7rem;
 }
 
-mat-nav-list{
+.nav-item:hover,
+.nav-group-toggle:hover {
+    background: rgba(var(--app-primary-rgb), 0.08);
+    color: var(--app-primary);
+}
 
-    padding: 0 .75rem;
+.nav-item.active {
+    background: rgba(var(--app-primary-rgb), 0.12);
+    color: var(--app-primary);
+    font-weight: 700;
+}
 
-    a {
-        margin: .25rem 0;
-        border-radius: 10px;
-        color: var(--app-text-secondary);
-        transition: background-color 160ms ease, color 160ms ease;
-    }
+.nav-label {
+    flex: 1 1 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-    a:hover { background: rgba(var(--app-primary-rgb), 0.08); color: var(--app-primary); }
-    a.active { background: rgba(var(--app-primary-rgb), 0.12); color: var(--app-primary); font-weight: 700; }
+.nav-group {
+    margin: .15rem 0;
+}
+
+.nav-group-toggle {
+    width: 100%;
+    padding: .7rem .7rem;
+}
+
+.nav-group-items {
+    margin-top: .15rem;
+    margin-left: .75rem;
+    padding-left: .75rem;
+    border-left: 1px solid var(--app-border);
+}
+
+.nav-child-item {
+    min-height: 40px;
+    padding-left: .55rem;
+}
+
+.chevron {
+    margin-left: auto;
+    font-size: 1.1rem;
+}
+
+mat-nav-list a,
+mat-nav-list button {
     mat-icon { color: inherit; }
-
 }
 
 .sidebar-footer{
 
     margin-top: auto;
     padding: 1rem 1rem 1.25rem;
-
     border-top: 1px solid var(--app-border);
 
 }
@@ -221,8 +244,8 @@ mat-nav-list{
 @media (max-width: 760px) {
     .sidebar { min-height: auto; width: 100%; }
     nav { padding-bottom: .75rem; }
-    mat-nav-list { display: flex; gap: .25rem; overflow-x: auto; }
-    mat-nav-list a { flex: 0 0 auto; }
+    .nav-list { display: flex; gap: .25rem; overflow-x: auto; }
+    .nav-item, .nav-group-toggle { flex: 0 0 auto; }
     .section-label { margin-top: .9rem; }
     .sidebar-footer { display: flex; align-items: center; gap: .75rem; padding-top: .75rem; }
     .logout-button { width: auto; margin-top: 0; margin-left: auto; }
