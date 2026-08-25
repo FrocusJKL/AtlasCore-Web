@@ -1,5 +1,5 @@
 import { Component, inject, output } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +16,7 @@ import { NavigationService } from '../../../core/services/navigation.service';
 export class LayoutSidebar {
   readonly themeService = inject(ThemeService);
   readonly navigationService = inject(NavigationService);
+  readonly router = inject(Router);
   readonly collapsedChange = output<boolean>();
   collapsed = false;
 
@@ -26,7 +27,13 @@ export class LayoutSidebar {
   constructor() {
     this.navigationService.getNavigation().subscribe((items) => {
       this.menuItems = this.filterNavigation(items);
-      this.activeGroupId = this.menuItems.find((item) => this.hasChildren(item))?.id ?? null;
+      this.setActiveGroupFromUrl(this.router.url);
+    });
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.setActiveGroupFromUrl(event.urlAfterRedirects);
+      }
     });
   }
 
@@ -49,7 +56,10 @@ export class LayoutSidebar {
   selectRailItem(item: NavigationNode): void {
     if (this.hasChildren(item)) {
       this.activeGroupId = item.id;
-      item.expanded = !(item.expanded ?? true);
+      item.expanded = true;
+      if (this.collapsed) {
+        this.toggleCollapsed();
+      }
       return;
     }
 
@@ -58,6 +68,10 @@ export class LayoutSidebar {
 
   hasChildren(item: NavigationNode): boolean {
     return Boolean((item.children ?? item.modules ?? []).length);
+  }
+
+  get activeMenuItem(): NavigationNode | null {
+    return this.menuItems.find((item) => item.id === this.activeGroupId) ?? null;
   }
 
   private filterNavigation(items: NavigationNode[]): NavigationNode[] {
@@ -85,5 +99,13 @@ export class LayoutSidebar {
     }
 
     return allowedRoles.some((role: string) => this.currentRoles.includes(role));
+  }
+
+  private setActiveGroupFromUrl(url: string): void {
+    const activeGroup = this.menuItems.find((item) =>
+      (item.children ?? item.modules ?? []).some((child) => child.route && url.startsWith(child.route)),
+    );
+
+    this.activeGroupId = activeGroup?.id ?? this.activeGroupId ?? this.menuItems.find((item) => this.hasChildren(item))?.id ?? null;
   }
 }
