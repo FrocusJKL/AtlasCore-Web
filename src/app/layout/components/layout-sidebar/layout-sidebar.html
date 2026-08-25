@@ -24,26 +24,54 @@
 
         <mat-nav-list>
 
-        @for(item of menuItems; track item.label){
+            @for (item of menuItems; track item.id) {
+                @if (!hasChildren(item)) {
+                    <a
+                        mat-list-item
+                        [routerLink]="item.route"
+                        routerLinkActive="active"
+                        #link="routerLinkActive"
+                        [attr.aria-current]="link.isActive ? 'page' : null">
 
-            <a
-                mat-list-item
-                [routerLink]="item.route"
-                routerLinkActive="active"
-                #link="routerLinkActive"
-                [attr.aria-current]="link.isActive ? 'page' : null">
+                        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
 
-                <mat-icon matListItemIcon>
-                    {{item.icon}}
-                </mat-icon>
+                        <span matListItemTitle class="nav-label">
+                            {{ item.label }}
+                        </span>
+                    </a>
+                } @else {
+                    <div class="nav-group">
+                        <button
+                            type="button"
+                            class="group-toggle"
+                            (click)="toggleGroup(item)">
+                            <mat-icon>{{ item.icon }}</mat-icon>
+                            <span class="nav-label">{{ item.label }}</span>
+                            <mat-icon class="chevron">{{ item.expanded !== false ? 'expand_less' : 'expand_more' }}</mat-icon>
+                        </button>
 
-                <span matListItemTitle class="nav-label">
-                    {{item.label}}
-                </span>
+                        @if (item.expanded !== false) {
+                            <div class="group-content">
+                                @for (child of item.children ?? item.modules ?? []; track child.id) {
+                                    <a
+                                        mat-list-item
+                                        [routerLink]="child.route"
+                                        routerLinkActive="active"
+                                        #childLink="routerLinkActive"
+                                        [attr.aria-current]="childLink.isActive ? 'page' : null">
 
-            </a>
+                                        <mat-icon matListItemIcon>{{ child.icon }}</mat-icon>
 
-        }
+                                        <span matListItemTitle class="nav-label">
+                                            {{ child.label }}
+                                        </span>
+                                    </a>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            }
 
         </mat-nav-list>
 
