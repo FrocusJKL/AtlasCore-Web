@@ -18,66 +18,99 @@
         <mat-icon>{{ collapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
     </button>
 
-    <nav aria-label="Navegación principal">
+    <div class="sidebar-shell">
 
-        <p class="section-label">Menú principal</p>
-
-        <mat-nav-list class="nav-list">
-
-            @for (item of menuItems; track item.id) {
-                @if (!hasChildren(item)) {
-                    <a
-                        class="nav-item"
-                        mat-list-item
-                        [routerLink]="item.route"
-                        routerLinkActive="active"
-                        #link="routerLinkActive"
-                        [attr.aria-current]="link.isActive ? 'page' : null">
-
-                        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-
-                        <span matListItemTitle class="nav-label">
-                            {{ item.label }}
-                        </span>
-                    </a>
-                } @else {
-                    <div class="nav-group">
+        @if (collapsed) {
+            <div class="sidebar-rail" aria-label="Navegación rápida">
+                @for (item of menuItems; track item.id) {
+                    @if (hasChildren(item)) {
                         <button
                             type="button"
-                            class="nav-item nav-group-toggle"
-                            (click)="toggleGroup(item)">
-                            <mat-icon>{{ item.icon }}</mat-icon>
-                            <span class="nav-label">{{ item.label }}</span>
-                            <mat-icon class="chevron">{{ item.expanded !== false ? 'expand_less' : 'expand_more' }}</mat-icon>
+                            class="rail-item"
+                            [class.active]="activeGroupId === item.id"
+                            (click)="selectRailItem(item)"
+                            [attr.aria-label]="item.label">
+                            <mat-icon>{{ item.icon ?? 'apps' }}</mat-icon>
+                            <span class="rail-label">{{ item.label }}</span>
                         </button>
-
-                        @if (item.expanded !== false) {
-                            <div class="nav-group-items">
-                                @for (child of item.children ?? item.modules ?? []; track child.id) {
-                                    <a
-                                        class="nav-item nav-child-item"
-                                        mat-list-item
-                                        [routerLink]="child.route"
-                                        routerLinkActive="active"
-                                        #childLink="routerLinkActive"
-                                        [attr.aria-current]="childLink.isActive ? 'page' : null">
-
-                                        <mat-icon matListItemIcon>{{ child.icon }}</mat-icon>
-
-                                        <span matListItemTitle class="nav-label">
-                                            {{ child.label }}
-                                        </span>
-                                    </a>
-                                }
-                            </div>
-                        }
-                    </div>
+                    } @else {
+                        <a
+                            class="rail-item"
+                            [routerLink]="item.route"
+                            routerLinkActive="active"
+                            #link="routerLinkActive"
+                            [attr.aria-current]="link.isActive ? 'page' : null"
+                            [attr.aria-label]="item.label">
+                            <mat-icon>{{ item.icon ?? 'circle' }}</mat-icon>
+                            <span class="rail-label">{{ item.label }}</span>
+                        </a>
+                    }
                 }
-            }
+            </div>
+        }
 
-        </mat-nav-list>
+        <nav class="sidebar-panel" aria-label="Navegación principal">
 
-    </nav>
+            <p class="section-label">Menú principal</p>
+
+            <mat-nav-list class="nav-list">
+
+                @for (item of menuItems; track item.id) {
+                    @if (!hasChildren(item)) {
+                        <a
+                            class="nav-item"
+                            mat-list-item
+                            [routerLink]="item.route"
+                            routerLinkActive="active"
+                            #link="routerLinkActive"
+                            [attr.aria-current]="link.isActive ? 'page' : null">
+
+                            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+
+                            <span matListItemTitle class="nav-label">
+                                {{ item.label }}
+                            </span>
+                        </a>
+                    } @else {
+                        <div class="nav-group" [class.is-open]="item.expanded !== false">
+                            <button
+                                type="button"
+                                class="nav-item nav-group-toggle"
+                                (click)="toggleGroup(item)">
+                                <mat-icon>{{ item.icon }}</mat-icon>
+                                <span class="nav-label">{{ item.label }}</span>
+                                <mat-icon class="chevron">{{ item.expanded !== false ? 'expand_less' : 'expand_more' }}</mat-icon>
+                            </button>
+
+                            @if (item.expanded !== false) {
+                                <div class="nav-group-items">
+                                    @for (child of item.children ?? item.modules ?? []; track child.id) {
+                                        <a
+                                            class="nav-item nav-child-item"
+                                            mat-list-item
+                                            [routerLink]="child.route"
+                                            routerLinkActive="active"
+                                            #childLink="routerLinkActive"
+                                            [attr.aria-current]="childLink.isActive ? 'page' : null">
+
+                                            <mat-icon matListItemIcon>{{ child.icon }}</mat-icon>
+
+                                            <span matListItemTitle class="nav-label">
+                                                {{ child.label }}
+                                            </span>
+                                        </a>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+
+            </mat-nav-list>
+
+        </nav>
+
+    </div>
 
     <div class="sidebar-footer">
 

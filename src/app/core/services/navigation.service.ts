@@ -42,7 +42,7 @@ export class NavigationService {
     const label = this.getValue(item, ['label', 'title', 'name', 'nombreCategoria', 'nombre']) ?? 'Sin nombre';
 
     return {
-      id: String(this.getIdValue(item, ['id', 'categoryId', 'idCategoria', 'categoriaId']) ?? label),
+      id: String(this.getIdValue(item, ['categoryId', 'idCategoria', 'categoriaId']) ?? label),
       categoryId: this.getIdValue(item, ['categoryId', 'idCategoria', 'categoriaId']) ?? undefined,
       moduleId: this.getIdValue(item, ['moduleId', 'idModulo', 'module_id']) ?? undefined,
       label: String(label),

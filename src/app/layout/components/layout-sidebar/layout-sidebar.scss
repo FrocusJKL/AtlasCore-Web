@@ -60,6 +60,76 @@
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 
+.sidebar-shell {
+    display: flex;
+    width: 100%;
+    min-height: 0;
+    flex: 1;
+}
+
+.sidebar-rail {
+    width: 76px;
+    padding: .75rem .45rem;
+    border-right: 1px solid var(--app-border);
+    background: rgba(148, 163, 184, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+}
+
+.rail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    min-height: 56px;
+    padding: .55rem .35rem;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--app-text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+
+    &:hover {
+        background: rgba(var(--app-primary-rgb), 0.08);
+        color: var(--app-primary);
+    }
+
+    &.active {
+        background: rgba(var(--app-primary-rgb), 0.12);
+        color: var(--app-primary);
+        box-shadow: inset 0 0 0 1px rgba(var(--app-primary-rgb), 0.12);
+    }
+
+    mat-icon {
+        font-size: 1.35rem;
+        width: 1.35rem;
+        height: 1.35rem;
+    }
+}
+
+.rail-label {
+    display: block;
+    font-size: .64rem;
+    line-height: 1.2;
+    text-align: center;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-panel {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: rgba(148, 163, 184, 0.015);
+}
+
 .collapse-button {
     position: absolute;
     top: 50%;
@@ -82,8 +152,19 @@
     .section-label,
     .nav-label,
     .user-copy,
-    .logout-label {
+    .logout-label,
+    .sidebar-panel {
         display: none;
+    }
+
+    .sidebar-shell {
+        display: block;
+    }
+
+    .sidebar-rail {
+        width: 100%;
+        border-right: 0;
+        padding-top: 1rem;
     }
 
     .nav-list {
@@ -131,7 +212,7 @@
 }
 
 .nav-list {
-    padding: 0 .65rem;
+    padding: 0 .65rem .75rem;
 }
 
 .nav-item,
@@ -187,6 +268,8 @@
     margin-left: .75rem;
     padding-left: .75rem;
     border-left: 1px solid var(--app-border);
+    overflow: hidden;
+    transition: max-height 220ms ease, opacity 220ms ease, margin-top 220ms ease;
 }
 
 .nav-child-item {

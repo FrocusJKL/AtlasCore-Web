@@ -20,11 +20,13 @@ export class LayoutSidebar {
   collapsed = false;
 
   menuItems: NavigationNode[] = [];
+  activeGroupId: string | null = null;
   private readonly currentRoles = ['admin', 'manager', 'seller', 'user'];
 
   constructor() {
     this.navigationService.getNavigation().subscribe((items) => {
       this.menuItems = this.filterNavigation(items);
+      this.activeGroupId = this.menuItems.find((item) => this.hasChildren(item))?.id ?? null;
     });
   }
 
@@ -39,6 +41,19 @@ export class LayoutSidebar {
     }
 
     item.expanded = !(item.expanded ?? true);
+    if (item.expanded) {
+      this.activeGroupId = item.id;
+    }
+  }
+
+  selectRailItem(item: NavigationNode): void {
+    if (this.hasChildren(item)) {
+      this.activeGroupId = item.id;
+      item.expanded = !(item.expanded ?? true);
+      return;
+    }
+
+    this.activeGroupId = item.id;
   }
 
   hasChildren(item: NavigationNode): boolean {
