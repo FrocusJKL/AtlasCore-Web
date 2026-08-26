@@ -88,9 +88,12 @@
     }
 
     .sidebar-rail {
+        display: flex;
+        flex-direction: column;
+        gap: .7rem;
         width: 100%;
         border-right: 0;
-        padding-top: 1rem;
+        padding: 1rem .35rem 0;
         animation: rail-enter 220ms ease both;
     }
 
@@ -213,6 +216,14 @@
     text-align: left;
     cursor: pointer;
     transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+
+    > mat-icon {
+        flex: 0 0 24px;
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+        line-height: 24px;
+    }
 }
 
 .nav-item {
@@ -232,11 +243,16 @@
 }
 
 .nav-group-toggle .chevron {
-    transition: transform 180ms ease;
+    transform-origin: center;
+    animation: chevron-close 180ms ease-out both;
 }
 
 .nav-group.is-open .nav-group-toggle .chevron {
-    transform: rotate(180deg);
+    animation-name: chevron-open;
+}
+
+.nav-group.is-open .nav-group-toggle .chevron {
+    transform: rotate(270deg);
 }
 
 .nav-item.active {
@@ -278,6 +294,11 @@
 .chevron {
     margin-left: auto;
     font-size: 1.1rem;
+    flex: 0 0 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 20px !important;
+    line-height: 20px !important;
 }
 
 mat-nav-list a,
@@ -400,6 +421,16 @@ mat-nav-list button {
 @keyframes submenu-enter {
     from { opacity: 0; transform: translateY(-4px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes chevron-open {
+    from { opacity: .35; transform: translateY(2px) scale(.86); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes chevron-close {
+    from { opacity: .35; transform: translateY(-2px) scale(.86); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
