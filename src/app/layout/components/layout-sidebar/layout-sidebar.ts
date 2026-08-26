@@ -22,6 +22,7 @@ export class LayoutSidebar {
 
   menuItems: NavigationNode[] = [];
   activeGroupId: string | null = null;
+  openGroupId: string | null = null;
   private readonly currentRoles = ['admin', 'manager', 'seller', 'user'];
 
   constructor() {
@@ -49,13 +50,13 @@ export class LayoutSidebar {
 
     item.expanded = !(item.expanded ?? true);
     if (item.expanded) {
-      this.activeGroupId = item.id;
+      this.openGroupId = item.id;
     }
   }
 
   selectRailItem(item: NavigationNode): void {
     if (this.hasChildren(item)) {
-      this.activeGroupId = item.id;
+      this.openGroupId = item.id;
       item.expanded = true;
       if (this.collapsed) {
         this.toggleCollapsed();
@@ -71,7 +72,7 @@ export class LayoutSidebar {
   }
 
   get activeMenuItem(): NavigationNode | null {
-    return this.menuItems.find((item) => item.id === this.activeGroupId) ?? null;
+    return this.menuItems.find((item) => item.id === this.openGroupId) ?? null;
   }
 
   private filterNavigation(items: NavigationNode[]): NavigationNode[] {
@@ -107,5 +108,6 @@ export class LayoutSidebar {
     );
 
     this.activeGroupId = activeGroup?.id ?? this.activeGroupId ?? this.menuItems.find((item) => this.hasChildren(item))?.id ?? null;
+    this.openGroupId = this.activeGroupId;
   }
 }
