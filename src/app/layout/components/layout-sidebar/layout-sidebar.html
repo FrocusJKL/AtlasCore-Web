@@ -114,6 +114,14 @@
                 <strong>Juan Pablo</strong>
                 <small>Administrador</small>
             </div>
+            <button
+                mat-icon-button
+                class="settings-button"
+                type="button"
+                aria-label="Abrir configuración"
+                (click)="openSettings()">
+                <mat-icon>settings</mat-icon>
+            </button>
         </div>
 
         <button mat-button class="logout-button" type="button">
@@ -124,15 +132,36 @@
 
         </button>
 
-        <button
-            mat-button
-            type="button"
-            (click)="themeService.toggle()"
-            [attr.aria-label]="themeService.theme() === 'dark' ? 'Usar tema claro' : 'Usar tema oscuro'">
-            <mat-icon>{{ themeService.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
-            <span class="logout-label">{{ themeService.theme() === 'dark' ? 'Tema claro' : 'Tema oscuro' }}</span>
-        </button>
-
     </div>
+
+    <ng-template #settingsDialog>
+        <div class="settings-modal-header">
+            <div>
+                <span class="settings-eyebrow">Preferencias</span>
+                <h2 mat-dialog-title id="settings-title">Configuración</h2>
+            </div>
+            <button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar configuración">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <mat-dialog-content>
+            <div class="theme-setting-copy">
+                <strong>Tema de la aplicación</strong>
+                <small>Elige cómo quieres ver AtlasCore.</small>
+            </div>
+            <div class="theme-options" role="radiogroup" aria-label="Tema de la aplicación">
+                <button type="button" class="theme-option" [class.selected]="themeService.theme() === 'light'"
+                    [attr.aria-checked]="themeService.theme() === 'light'" role="radio" (click)="themeService.setTheme('light')">
+                    <mat-icon>light_mode</mat-icon>
+                    <span>Claro</span>
+                </button>
+                <button type="button" class="theme-option" [class.selected]="themeService.theme() === 'dark'"
+                    [attr.aria-checked]="themeService.theme() === 'dark'" role="radio" (click)="themeService.setTheme('dark')">
+                    <mat-icon>dark_mode</mat-icon>
+                    <span>Oscuro</span>
+                </button>
+            </div>
+        </mat-dialog-content>
+    </ng-template>
 
 </aside>

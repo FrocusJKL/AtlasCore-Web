@@ -56,3 +56,68 @@ ol {
   padding: 0;
   list-style: none;
 }
+
+.settings-dialog-panel {
+  --mat-dialog-container-shape: 18px;
+  --mat-dialog-container-elevation-shadow: 0 24px 60px rgba(15, 23, 42, .22);
+}
+
+.settings-dialog-panel .mat-mdc-dialog-surface {
+  overflow: hidden;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+  color: var(--app-text-primary);
+}
+
+.settings-dialog-panel .mat-mdc-dialog-content {
+  max-height: none;
+  padding: 0 1.5rem 1.5rem;
+  overflow: visible;
+}
+
+.settings-dialog-panel .settings-modal-header {
+  padding: 1.35rem 1.5rem 0;
+}
+
+.settings-dialog-panel .settings-modal-header h2 {
+  margin: .25rem 0 0;
+  color: var(--app-text-primary);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.settings-dialog-panel .theme-setting-copy {
+  padding-top: .25rem;
+}
+
+.settings-dialog-panel .theme-setting-copy strong {
+  color: var(--app-text-primary);
+  font-size: .95rem;
+}
+
+.settings-dialog-panel .theme-setting-copy small {
+  color: var(--app-text-secondary);
+  font-size: .8rem;
+}
+
+.settings-dialog-panel .theme-options {
+  margin-top: 1rem;
+}
+
+.settings-dialog-panel .theme-option {
+  min-height: 3.25rem;
+  border-radius: 10px;
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 600;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.settings-dialog-panel .theme-option:hover {
+  border-color: var(--app-primary);
+  background: rgba(var(--app-primary-rgb), .06);
+}
+
+.settings-dialog-panel .settings-modal-header button {
+  color: var(--app-text-secondary);
+}

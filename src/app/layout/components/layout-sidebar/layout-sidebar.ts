@@ -1,4 +1,6 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, inject, output, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,15 +11,17 @@ import { NavigationService } from '../../../core/services/navigation.service';
 
 @Component({
   selector: 'layout-sidebar',
-  imports: [RouterLink, RouterLinkActive, MatListModule, MatIconModule, MatButtonModule],
+  imports: [RouterLink, RouterLinkActive, MatListModule, MatIconModule, MatButtonModule, MatDialogModule],
   templateUrl: './layout-sidebar.html',
   styleUrl: './layout-sidebar.scss',
 })
 export class LayoutSidebar {
   readonly themeService = inject(ThemeService);
+  readonly dialog = inject(MatDialog);
   readonly navigationService = inject(NavigationService);
   readonly router = inject(Router);
   readonly collapsedChange = output<boolean>();
+  @ViewChild('settingsDialog') settingsDialog!: TemplateRef<unknown>;
   collapsed = false;
 
   menuItems: NavigationNode[] = [];
@@ -41,6 +45,16 @@ export class LayoutSidebar {
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
     this.collapsedChange.emit(this.collapsed);
+  }
+
+  openSettings(): void {
+    this.dialog.open(this.settingsDialog, {
+      width: '360px',
+      maxWidth: 'calc(100vw - 2rem)',
+      panelClass: 'settings-dialog-panel',
+      ariaLabelledBy: 'settings-title',
+      autoFocus: 'first-tabbable',
+    });
   }
 
   toggleGroup(item: NavigationNode): void {
