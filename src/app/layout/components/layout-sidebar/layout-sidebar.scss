@@ -47,7 +47,7 @@
 }
 
 .sidebar-rail {
-    width: 76px;
+    width: 68px;
     padding: .75rem .45rem;
     border-right: 1px solid var(--app-border);
     background: rgba(148, 163, 184, 0.03);
@@ -172,7 +172,13 @@
 
     .user-profile {
         justify-content: center;
+        width: 100%;
+        min-width: 0;
         padding-inline: .4rem;
+    }
+
+    .avatar {
+        flex-basis: 2rem;
     }
 
     .logout-button {
@@ -293,8 +299,12 @@ mat-nav-list button {
 }
 
 .avatar {
+    display: grid;
+    place-items: center;
+    flex: 0 0 2rem;
     width: 2rem;
     height: 2rem;
+    border-radius: 50%;
     background: rgba($success, .16);
     color: color.adjust($success, $lightness: -15%);
     font-size: .7rem;
