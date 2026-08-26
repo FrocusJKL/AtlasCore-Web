@@ -1,10 +1,10 @@
 <div class="main-layout" [class.sidebar-collapsed]="sidebarCollapsed">
 
-    <layout-sidebar (collapsedChange)="sidebarCollapsed = $event" />
+    <layout-sidebar #sidebar (collapsedChange)="sidebarCollapsed = $event" />
 
     <div class="main-shell">
 
-        <main class="content">
+        <main class="content" (click)="collapseSidebar()">
 
             <router-outlet />
 

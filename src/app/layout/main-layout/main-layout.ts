@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LayoutSidebar } from '../components/layout-sidebar/layout-sidebar';
 import { LayoutFooter } from '../components/layout-footer/layout-footer';
@@ -15,5 +15,12 @@ import { LayoutFooter } from '../components/layout-footer/layout-footer';
   styleUrl: './main-layout.scss',
 })
 export class MainLayout {
+  @ViewChild(LayoutSidebar) private sidebar!: LayoutSidebar;
   sidebarCollapsed = false;
+
+  collapseSidebar(): void {
+    if (!this.sidebar.collapsed) {
+      this.sidebar.toggleCollapsed();
+    }
+  }
 }
