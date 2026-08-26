@@ -26,38 +26,17 @@
     padding: 1rem 1.15rem;
     display: flex;
     align-items: center;
-    gap: .75rem;
+    justify-content: center;
     border-bottom: 1px solid var(--app-border);
     overflow: hidden;
 
-    strong { color: var(--app-primary); }
-    span:not(.logo-mark) { color: var(--app-text-primary); }
-    small {
-        display: block;
-        margin-top: .2rem;
-        color: var(--app-text-secondary);
-        font-size: .7rem;
-        font-weight: 500;
-    }
-
 }
 
-.logo-mark,
-.avatar {
-    display: grid;
-    place-items: center;
-    flex: 0 0 auto;
-    border-radius: 12px;
-    font-weight: 800;
-}
-
-.logo-mark {
-    width: 2.25rem;
-    height: 2.25rem;
-    background: var(--app-primary);
-    color: white;
-    font-size: 1.2rem;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+.brand-logo {
+    display: block;
+    width: min(100%, 8rem);
+    height: 3rem;
+    object-fit: contain;
 }
 
 .sidebar-shell {
@@ -146,6 +125,11 @@
     .logo {
         justify-content: center;
         padding-inline: .75rem;
+    }
+
+    .brand-logo {
+        width: 2.25rem;
+        height: 2.25rem;
     }
 
     .logo-copy,
