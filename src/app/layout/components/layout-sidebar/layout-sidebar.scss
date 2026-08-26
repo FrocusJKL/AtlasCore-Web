@@ -16,7 +16,7 @@
     box-shadow: var(--app-shadow);
     position: relative;
     z-index: 1;
-    transition: width 180ms ease;
+    transition: width 220ms cubic-bezier(.2, .8, .2, 1), box-shadow 180ms ease;
     padding: 5px;
 
 }
@@ -53,6 +53,14 @@
     border: 1px solid var(--app-border);
     box-shadow: var(--app-shadow);
     color: var(--app-primary);
+    transition: background-color 160ms ease, color 160ms ease, transform 220ms ease, box-shadow 160ms ease;
+
+    &:hover {
+        background: rgba(var(--app-primary-rgb), .08);
+        box-shadow: var(--app-shadow), 0 0 0 4px rgba(var(--app-primary-rgb), .08);
+    }
+
+    &:active { transform: translateY(-50%) scale(.92); }
 }
 
 .sidebar.collapsed {
@@ -83,6 +91,7 @@
         width: 100%;
         border-right: 0;
         padding-top: 1rem;
+        animation: rail-enter 220ms ease both;
     }
 
     .nav-list {
@@ -151,6 +160,7 @@
     &:hover {
         background: rgba(var(--app-primary-rgb), .08);
         color: var(--app-primary);
+        transform: translateY(-2px);
     }
 
     &.active {
@@ -214,6 +224,19 @@
 .nav-group-toggle:hover {
     background: rgba(var(--app-primary-rgb), 0.08);
     color: var(--app-primary);
+    transform: translateX(2px);
+}
+
+.nav-group-items {
+    animation: submenu-enter 180ms ease both;
+}
+
+.nav-group-toggle .chevron {
+    transition: transform 180ms ease;
+}
+
+.nav-group.is-open .nav-group-toggle .chevron {
+    transform: rotate(180deg);
 }
 
 .nav-item.active {
@@ -367,4 +390,25 @@ mat-nav-list button {
     .section-label { margin-top: .9rem; }
     .sidebar-footer { display: flex; align-items: center; gap: .75rem; padding-top: .75rem; }
     .logout-button { width: auto; margin-top: 0; margin-left: auto; }
+}
+
+@keyframes rail-enter {
+    from { opacity: 0; transform: translateX(-6px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes submenu-enter {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
 }
