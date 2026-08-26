@@ -62,16 +62,21 @@ export class LayoutSidebar {
       return;
     }
 
-    item.expanded = !(item.expanded ?? true);
-    if (item.expanded) {
-      this.openGroupId = item.id;
-    }
+    const shouldExpand = !(item.expanded ?? false);
+
+    this.menuItems.forEach((menuItem) => {
+      if (this.hasChildren(menuItem)) {
+        menuItem.expanded = shouldExpand && menuItem.id === item.id;
+      }
+    });
+
+    this.openGroupId = shouldExpand ? item.id : null;
   }
 
   selectRailItem(item: NavigationNode): void {
     if (this.hasChildren(item)) {
       this.openGroupId = item.id;
-      item.expanded = true;
+      this.collapseOtherGroups(item);
       if (this.collapsed) {
         this.toggleCollapsed();
       }
@@ -89,6 +94,24 @@ export class LayoutSidebar {
     return this.menuItems.find((item) => item.id === this.openGroupId) ?? null;
   }
 
+  private collapseOtherGroups(activeItem: NavigationNode | null): void {
+    this.menuItems.forEach((menuItem) => {
+      if (this.hasChildren(menuItem)) {
+        menuItem.expanded = menuItem.id === activeItem?.id;
+      }
+    });
+  }
+
+  private setActiveGroupFromUrl(url: string): void {
+    const activeGroup = this.menuItems.find((item) =>
+      (item.children ?? item.modules ?? []).some((child) => child.route && url.startsWith(child.route)),
+    );
+
+    this.activeGroupId = activeGroup?.id ?? this.activeGroupId ?? this.menuItems.find((item) => this.hasChildren(item))?.id ?? null;
+    this.openGroupId = activeGroup?.id ?? null;
+    this.collapseOtherGroups(activeGroup ?? null);
+  }
+
   private filterNavigation(items: NavigationNode[]): NavigationNode[] {
     return items
       .filter((item) => item.visible !== false && this.hasAccess(item))
@@ -98,7 +121,7 @@ export class LayoutSidebar {
 
         return {
           ...item,
-          expanded: item.expanded ?? true,
+          expanded: item.expanded ?? false,
           children: children.length > 0 ? children : undefined,
           modules: children.length > 0 ? children : undefined,
         };
@@ -114,14 +137,5 @@ export class LayoutSidebar {
     }
 
     return allowedRoles.some((role: string) => this.currentRoles.includes(role));
-  }
-
-  private setActiveGroupFromUrl(url: string): void {
-    const activeGroup = this.menuItems.find((item) =>
-      (item.children ?? item.modules ?? []).some((child) => child.route && url.startsWith(child.route)),
-    );
-
-    this.activeGroupId = activeGroup?.id ?? this.activeGroupId ?? this.menuItems.find((item) => this.hasChildren(item))?.id ?? null;
-    this.openGroupId = this.activeGroupId;
   }
 }
