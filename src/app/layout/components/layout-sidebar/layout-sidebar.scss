@@ -87,13 +87,13 @@
         display: block;
     }
 
-    .sidebar-rail {
+   .sidebar-rail {
         display: flex;
         flex-direction: column;
         gap: .7rem;
         width: 100%;
         border-right: 0;
-        padding: 1rem .35rem 0;
+        margin:  10px 0;
         animation: rail-enter 220ms ease both;
     }
 
