@@ -121,3 +121,54 @@ ol {
 .settings-dialog-panel .settings-modal-header button {
   color: var(--app-text-secondary);
 }
+
+.users-dialog-panel {
+  --mat-dialog-container-shape: 12px;
+  --mat-dialog-container-elevation-shadow: 0 24px 60px rgba(15, 23, 42, .22);
+}
+
+.users-dialog-panel .mat-mdc-dialog-surface {
+  overflow: hidden;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+  color: var(--app-text-primary);
+}
+
+.users-dialog-panel .mat-mdc-dialog-content {
+  max-height: calc(92vh - 150px);
+  padding: 0 1.5rem 1rem;
+}
+
+.users-dialog-panel .users-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem .75rem;
+}
+
+.users-dialog-panel .dialog-eyebrow {
+  color: var(--app-text-secondary);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.users-dialog-panel .users-dialog-header h2 {
+  margin: .25rem 0 0;
+  color: var(--app-text-primary);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.users-dialog-panel .users-dialog-header button {
+  color: var(--app-text-secondary);
+}
+
+.users-dialog-panel .mat-mdc-dialog-actions {
+  gap: .65rem;
+  padding: .85rem 1.5rem 1.25rem;
+}
+
+.users-dialog-panel .disable-action {
+  --mdc-filled-button-container-color: #ea7180;
+  --mdc-filled-button-label-text-color: white;
+}
