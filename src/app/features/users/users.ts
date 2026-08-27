@@ -4,13 +4,14 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { User, UserDraft, UserRole, UserType } from './user.model';
 import { UsersService } from './users.service';
 
 @Component({
   selector: 'app-users',
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatDialogModule, MatIconModule],
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatDialogModule, MatIconModule, MatTooltipModule],
   templateUrl: './users.html',
   styleUrl: './users.scss',
 })
@@ -21,13 +22,16 @@ export class Users {
 
   @ViewChild('userFormDialog') userFormDialog!: TemplateRef<unknown>;
   @ViewChild('disableDialog') disableDialog!: TemplateRef<unknown>;
+  @ViewChild('inactiveUsersDialog') inactiveUsersDialog!: TemplateRef<unknown>;
   private formDialogRef: MatDialogRef<unknown> | null = null;
   private disableDialogRef: MatDialogRef<unknown> | null = null;
+  private inactiveUsersDialogRef: MatDialogRef<unknown> | null = null;
 
   readonly users = this.usersService.users;
   readonly searchTerm = signal('');
   readonly selectedRole = signal<'all' | UserRole>('all');
   readonly selectedStatus = signal<'all' | 'active' | 'inactive'>('all');
+  readonly inactiveSearchTerm = signal('');
   readonly editingUserId = signal<string | null>(null);
   readonly userToDisable = signal<User | null>(null);
   readonly deactivationReason = signal('');
@@ -69,6 +73,14 @@ export class Users {
       const matchesRole = role === 'all' || user.role === role;
       const matchesStatus = status === 'all' || (status === 'active' ? user.active : !user.active);
       return matchesTerm && matchesRole && matchesStatus;
+    });
+  });
+
+  readonly inactiveUsers = computed(() => {
+    const term = this.inactiveSearchTerm().trim().toLowerCase();
+    return this.users().filter((user) => {
+      const matchesTerm = !term || `${this.fullName(user)} ${user.email} ${user.telefono} ${user.role} ${user.deactivationReason ?? ''}`.toLowerCase().includes(term);
+      return !user.active && matchesTerm;
     });
   });
 
@@ -126,6 +138,25 @@ export class Users {
     });
   }
 
+  openInactiveUsers(): void {
+    this.inactiveSearchTerm.set('');
+    this.inactiveUsersDialogRef = this.dialog.open(this.inactiveUsersDialog, {
+      width: '920px', maxWidth: 'calc(100vw - 2rem)', maxHeight: '92vh', panelClass: 'users-dialog-panel',
+      ariaLabelledBy: 'inactive-users-title', autoFocus: 'first-tabbable',
+    });
+  }
+
+  closeInactiveUsers(): void {
+    this.inactiveUsersDialogRef?.close();
+    this.inactiveUsersDialogRef = null;
+  }
+
+  reactivateUser(user: User): void {
+    if (window.confirm(`¿Reactivar a ${this.fullName(user)}?`)) {
+      this.usersService.activate(user.id);
+    }
+  }
+
   closeDisable(): void {
     this.userToDisable.set(null);
     this.disableSubmitted.set(false);
@@ -159,6 +190,10 @@ export class Users {
 
   setDeactivationReason(value: string): void {
     this.deactivationReason.set(value);
+  }
+
+  setInactiveSearchTerm(value: string): void {
+    this.inactiveSearchTerm.set(value);
   }
 
   fullName(user: User): string {

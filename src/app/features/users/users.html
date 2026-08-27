@@ -23,6 +23,7 @@
 					<option value="Consulta">Consulta</option>
 				</select>
 			</label>
+			<button mat-stroked-button type="button" (click)="openInactiveUsers()"><mat-icon>settings_backup_restore</mat-icon> Inhabilitados</button>
 			<label>
 				<span class="sr-only">Filtrar por estado</span>
 				<select #status (change)="setStatus(status.value)">
@@ -88,5 +89,28 @@
 			<label class="reason-field">Motivo de la inhabilitación<textarea rows="3" placeholder="Explica por qué se inhabilita este usuario" [value]="deactivationReason()" (input)="setDeactivationReason($any($event.target).value)" [class.invalid]="disableSubmitted() && !deactivationReason().trim()"></textarea>@if (disableSubmitted() && !deactivationReason().trim()) { <small>Indica un motivo para continuar.</small> }</label>
 		</mat-dialog-content>
 		<mat-dialog-actions align="end"><button mat-stroked-button type="button" mat-dialog-close (click)="closeDisable()">Cancelar</button><button mat-flat-button class="disable-action" type="button" (click)="disableUser()">Inhabilitar usuario</button></mat-dialog-actions>
+	</ng-template>
+
+	<ng-template #inactiveUsersDialog>
+		<div class="users-dialog-header">
+			<div><span class="dialog-eyebrow">Gestión de acceso</span><h2 mat-dialog-title id="inactive-users-title">Usuarios inhabilitados</h2></div>
+			<button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar usuarios inhabilitados" (click)="closeInactiveUsers()"><mat-icon>close</mat-icon></button>
+		</div>
+		<mat-dialog-content>
+			<p class="dialog-description">Los usuarios inhabilitados no aparecen en la vista principal ni pueden utilizar el sistema. Puedes reactivar cualquier usuario desde esta ventana.</p>
+			<label class="dialog-search"><span class="sr-only">Buscar usuarios inhabilitados</span><input #inactiveSearch type="search" placeholder="Buscar..." (input)="setInactiveSearchTerm(inactiveSearch.value)" /></label>
+			<div class="inactive-table-shell">
+				<table class="inactive-table">
+					<thead><tr><th>Nombre completo</th><th>Correo</th><th>Teléfono</th><th>Perfil de puesto</th><th>Motivo de la inhabilitación</th><th></th></tr></thead>
+					<tbody>
+						@for (user of inactiveUsers(); track user.id) {
+							<tr><td><strong>{{ fullName(user) }}</strong><small>@{{ user.username }}</small></td><td>{{ user.email }}</td><td>{{ user.telefono }}</td><td>{{ user.role }}</td><td>{{ user.deactivationReason || 'Sin motivo registrado' }}</td><td><button mat-icon-button class="reactivate-button" type="button" aria-label="Reactivar usuario" matTooltip="Reactivar usuario" (click)="reactivateUser(user)"><mat-icon>person_add</mat-icon></button></td></tr>
+						}
+						@empty { <tr><td class="empty-state" colspan="6">No hay usuarios inhabilitados.</td></tr> }
+					</tbody>
+				</table>
+			</div>
+		</mat-dialog-content>
+		<mat-dialog-actions align="end"><button mat-stroked-button type="button" mat-dialog-close (click)="closeInactiveUsers()">Cerrar</button></mat-dialog-actions>
 	</ng-template>
 </div>

@@ -83,6 +83,10 @@ export class UsersService {
     return this.update(id, { active: false, deactivationReason: reason });
   }
 
+  activate(id: string): User | undefined {
+    return this.update(id, { active: true, deactivationReason: undefined });
+  }
+
   private loadUsers(): User[] {
     try {
       const storedUsers = localStorage.getItem(STORAGE_KEY);

@@ -172,3 +172,46 @@ ol {
   --mdc-filled-button-container-color: #ea7180;
   --mdc-filled-button-label-text-color: white;
 }
+
+.users-dialog-panel .dialog-description {
+  margin: .25rem 0 1rem;
+  color: var(--app-text-secondary);
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+.users-dialog-panel .dialog-search {
+  display: block;
+  max-width: 18rem;
+  margin: 0 0 .75rem auto;
+}
+
+.users-dialog-panel .inactive-table-shell {
+  overflow: auto;
+  border: 1px solid var(--app-border);
+}
+
+.users-dialog-panel .inactive-table {
+  min-width: 760px;
+  font-size: .76rem;
+}
+
+.users-dialog-panel .inactive-table th,
+.users-dialog-panel .inactive-table td {
+  padding: .65rem .55rem;
+  white-space: nowrap;
+}
+
+.users-dialog-panel .inactive-table tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--app-border) 22%, transparent);
+}
+
+.users-dialog-panel .inactive-table small {
+  display: block;
+  margin-top: .2rem;
+  color: var(--app-text-secondary);
+}
+
+.users-dialog-panel .reactivate-button {
+  color: var(--app-primary);
+}
