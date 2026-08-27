@@ -55,13 +55,20 @@
     color: var(--app-primary);
     transition: background-color 160ms ease, color 160ms ease, transform 220ms ease, box-shadow 160ms ease;
 
-    &:hover {
-        background: rgba(var(--app-primary-rgb), .08);
-        box-shadow: var(--app-shadow), 0 0 0 4px rgba(var(--app-primary-rgb), .08);
+    mat-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
     }
 
-    &:active { transform: translateY(-50%) scale(.92); }
+    &:hover {
+        // background: rgba(var(--app-primary-rgb), .08);
+        box-shadow: var(--app-shadow), 0 0 0 2px rgba(var(--app-primary-rgb), .08);
+    }
+
+    &:active { transform: translateY(-50%) scale(.80); }
 }
+
 
 .sidebar.collapsed {
     .logo {
