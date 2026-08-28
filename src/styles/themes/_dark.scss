@@ -2,7 +2,7 @@
 	color-scheme: dark;
 
 	--app-primary: #fa9860;
-	--app-primary-rgb: 96, 165, 250;
+	--app-primary-rgb: 250, 152, 96;
 	--app-background: #1C1C1C;
 	--app-surface: #262626;
 	--app-surface-raised: #273449;
@@ -12,8 +12,8 @@
 	--app-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
 	--app-button-create: #ff5a0a;
 	--app-button-create-hover: #ff6f2e;
-	--app-button-primary: #d946c8;
-	--app-button-primary-hover: #ec65dc;
+	--app-button-primary: var(--app-primary);
+	--app-button-primary-hover: #f27d3d;
 	--app-button-danger: #f0808e;
 	--app-button-danger-hover: #f59aa5;
 	--app-button-icon-bg: #303030;
