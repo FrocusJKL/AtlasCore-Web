@@ -47,6 +47,10 @@ export class LayoutSidebar {
     this.collapsedChange.emit(this.collapsed);
   }
 
+  logout(): void {
+    this.router.navigate(['/login']);
+  }
+
   openSettings(): void {
     this.dialog.open(this.settingsDialog, {
       width: '360px',

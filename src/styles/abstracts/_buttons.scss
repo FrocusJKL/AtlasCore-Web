@@ -22,7 +22,7 @@
 .app-button mat-icon { width: 1.05rem; height: 1.05rem; font-size: 1.05rem; }
 .app-button:hover { transform: translateY(-1px); box-shadow: 0 5px 12px rgba(15, 23, 42, .16); }
 .app-button:active { transform: translateY(0); box-shadow: 0 1px 3px rgba(15, 23, 42, .12); }
-.app-button:focus-visible, .app-icon-button:focus-visible { outline: 3px solid rgba(190, 0, 170, .25); outline-offset: 2px; }
+.app-button:focus-visible, .app-icon-button:focus-visible { outline: 3px solid rgba(var(--app-primary-rgb), .25); outline-offset: 2px; }
 .app-button--primary { background: var(--app-button-primary) !important; color: #fff !important; }
 .app-button--primary:hover { background: var(--app-button-primary-hover) !important; }
 .app-button--submit { background: var(--app-button-primary) !important; color: #fff !important; }
