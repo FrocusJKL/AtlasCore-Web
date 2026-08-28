@@ -326,9 +326,25 @@ mat-nav-list button {
     small { margin-top: .15rem; color: var(--app-text-secondary); font-size: .72rem; }
 }
 
+
 .settings-button {
+    flex: 0 0 2.35rem;
+    width: 2.35rem !important;
+    min-width: 2.35rem;
+    height: 2.35rem !important;
+    min-height: 2.35rem;
+    padding: 0 !important;
+    border-radius: 50%;
     margin-left: auto;
+    color: var(--app-primary) !important;
     transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+
+    mat-icon {
+        width: 1.05rem;
+        height: 1.05rem;
+        margin: 0;
+        font-size: 1.05rem;
+    }
 
     &:hover {
         border-color: var(--app-primary);
@@ -353,12 +369,12 @@ mat-nav-list button {
 .logout-button {
     width: 100%;
     min-height: 2.35rem;
-    padding: .625rem .625rem;
+    // padding: .625rem .625rem;
     border-radius: 15px;
     border: 1px solid transparent;
     background: transparent;
     justify-content: flex-start;
-    margin: .3rem .625rem 0;
+    margin: .3rem 0;
     color: var(--app-text-secondary);
     font-size: .8125rem;
     font-weight: 500;
@@ -376,7 +392,7 @@ mat-nav-list button {
         background: var(--app-surface);
         color: var(--app-text-primary);
         box-shadow: 0 2px 6px rgba(15, 23, 42, .12);
-        transform: scale(1.01);
+        // transform: scale(1.01);
     }
 }
 
