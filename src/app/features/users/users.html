@@ -5,7 +5,7 @@
 			<h1>Usuarios</h1>
 			<p class="subtitle">Gestiona los usuarios y permisos del sistema</p>
 		</div>
-		<button class="primary-button" type="button" (click)="openCreate()">+ Nuevo usuario</button>
+		<button class="app-button app-button--create" type="button" (click)="openCreate()"><mat-icon>add</mat-icon><span>Nuevo usuario</span></button>
 	</header>
 
 	<section class="page-content">
@@ -23,32 +23,33 @@
 					<option value="Consulta">Consulta</option>
 				</select>
 			</label>
-			<button mat-stroked-button type="button" (click)="openInactiveUsers()"><mat-icon>settings_backup_restore</mat-icon> Inhabilitados</button>
-			<label>
-				<span class="sr-only">Filtrar por estado</span>
-				<select #status (change)="setStatus(status.value)">
-					<option value="all">Todos los estados</option>
-					<option value="active">Activos</option>
-					<option value="inactive">Inactivos</option>
-				</select>
-			</label>
+			<button class="app-button app-button--filter" type="button" (click)="openInactiveUsers()"><mat-icon>settings_backup_restore</mat-icon> Inhabilitados</button>
 		</div>
 
 		<div class="table-shell">
 			<table>
 				<thead>
-					<tr><th>Usuario</th><th>Rol</th><th>Estado</th><th class="actions-column">Acciones</th></tr>
+					<tr><th>Usuario</th><th>Contacto</th><th>Cargo</th><th>Empresa / área</th><th>Tipo</th><th>Perfil</th><th class="actions-column">Acciones</th></tr>
 				</thead>
 				<tbody>
 					@for (user of filteredUsers(); track user.id) {
 						<tr>
-							<td><strong>{{ fullName(user) }}</strong><span>@{{ user.username }} · {{ user.email }}</span><span>{{ user.telefono }}</span></td>
+							<td><strong>{{ fullName(user) }}</strong><span>@{{ user.username }}</span></td>
+							<td><strong>{{ user.email }}</strong><span>{{ user.telefono }}</span></td>
+							<td>{{ user.position || 'Sin cargo' }}<span>{{ user.specialty || 'Sin especialidad' }}</span></td>
+							<td>{{ user.company || 'Sin empresa' }}<span>{{ user.workArea || 'Sin área' }}</span></td>
+							<td><span class="type-badge">{{ user.userType }}</span></td>
 							<td><span class="role">{{ user.role }}</span></td>
-							<td><span class="status" [class.inactive]="!user.active">{{ user.active ? 'Activo' : 'Inactivo' }}</span></td>
-							<td class="row-actions"><button type="button" (click)="openEdit(user)">Editar</button>@if (user.active) { <button class="danger" type="button" (click)="openDisable(user)">Inhabilitar</button> }</td>
+							<td class="row-actions">
+								<button class="app-icon-button app-icon-button--edit" type="button" matTooltip="Editar usuario"
+									aria-label="Editar usuario" (click)="openEdit(user)"><mat-icon>edit</mat-icon>
+								</button>
+								<button class="app-icon-button app-icon-button--danger" type="button" matTooltip="Inhabilitar usuario"
+									aria-label="Inhabilitar usuario" (click)="openDisable(user)"><mat-icon>person_off</mat-icon></button>
+							</td>
 						</tr>
 					}
-					@empty { <tr><td class="empty-state" colspan="4">No hay usuarios que coincidan con los filtros.</td></tr> }
+					@empty { <tr><td class="empty-state" colspan="7">No hay usuarios activos que coincidan con los filtros.</td></tr> }
 				</tbody>
 			</table>
 		</div>
@@ -79,7 +80,7 @@
 					</div></fieldset>
 				</form>
 		</mat-dialog-content>
-		<mat-dialog-actions align="end"><button mat-stroked-button type="button" mat-dialog-close (click)="closeForm()">Cancelar</button><button mat-flat-button color="primary" type="submit" form="user-form">{{ editingUserId() ? 'Guardar cambios' : 'Crear usuario' }}</button></mat-dialog-actions>
+		<mat-dialog-actions align="end"><button class="app-button app-button--cancel" type="button" mat-dialog-close (click)="closeForm()">Cancelar</button><button class="app-button app-button--submit" type="submit" form="user-form">{{ editingUserId() ? 'Guardar cambios' : 'Crear usuario' }}</button></mat-dialog-actions>
 	</ng-template>
 
 	<ng-template #disableDialog>
@@ -88,7 +89,7 @@
 			@if (userToDisable(); as user) { <p class="confirmation-copy">¿Seguro que deseas inhabilitar al usuario <strong>{{ fullName(user) }}</strong>?</p> }
 			<label class="reason-field">Motivo de la inhabilitación<textarea rows="3" placeholder="Explica por qué se inhabilita este usuario" [value]="deactivationReason()" (input)="setDeactivationReason($any($event.target).value)" [class.invalid]="disableSubmitted() && !deactivationReason().trim()"></textarea>@if (disableSubmitted() && !deactivationReason().trim()) { <small>Indica un motivo para continuar.</small> }</label>
 		</mat-dialog-content>
-		<mat-dialog-actions align="end"><button mat-stroked-button type="button" mat-dialog-close (click)="closeDisable()">Cancelar</button><button mat-flat-button class="disable-action" type="button" (click)="disableUser()">Inhabilitar usuario</button></mat-dialog-actions>
+		<mat-dialog-actions align="end"><button class="app-button app-button--cancel" type="button" mat-dialog-close (click)="closeDisable()">Cancelar</button><button class="app-button app-button--disabled" type="button" (click)="disableUser()">Inhabilitar usuario</button></mat-dialog-actions>
 	</ng-template>
 
 	<ng-template #inactiveUsersDialog>
@@ -111,6 +112,6 @@
 				</table>
 			</div>
 		</mat-dialog-content>
-		<mat-dialog-actions align="end"><button mat-stroked-button type="button" mat-dialog-close (click)="closeInactiveUsers()">Cerrar</button></mat-dialog-actions>
+		<mat-dialog-actions align="end"><button class="app-button app-button--cancel" type="button" mat-dialog-close (click)="closeInactiveUsers()">Cerrar</button></mat-dialog-actions>
 	</ng-template>
 </div>

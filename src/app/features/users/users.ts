@@ -30,7 +30,6 @@ export class Users {
   readonly users = this.usersService.users;
   readonly searchTerm = signal('');
   readonly selectedRole = signal<'all' | UserRole>('all');
-  readonly selectedStatus = signal<'all' | 'active' | 'inactive'>('all');
   readonly inactiveSearchTerm = signal('');
   readonly editingUserId = signal<string | null>(null);
   readonly userToDisable = signal<User | null>(null);
@@ -66,13 +65,11 @@ export class Users {
   readonly filteredUsers = computed(() => {
     const term = this.searchTerm().trim().toLowerCase();
     const role = this.selectedRole();
-    const status = this.selectedStatus();
 
     return this.users().filter((user) => {
       const matchesTerm = !term || `${this.fullName(user)} ${user.email} ${user.username}`.toLowerCase().includes(term);
       const matchesRole = role === 'all' || user.role === role;
-      const matchesStatus = status === 'all' || (status === 'active' ? user.active : !user.active);
-      return matchesTerm && matchesRole && matchesStatus;
+      return user.active && matchesTerm && matchesRole;
     });
   });
 
@@ -182,10 +179,6 @@ export class Users {
 
   setRole(value: string): void {
     this.selectedRole.set(value as 'all' | UserRole);
-  }
-
-  setStatus(value: string): void {
-    this.selectedStatus.set(value as 'all' | 'active' | 'inactive');
   }
 
   setDeactivationReason(value: string): void {

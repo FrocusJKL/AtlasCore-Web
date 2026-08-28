@@ -7,6 +7,7 @@
 @use 'styles/abstracts/mixins';
 @use 'styles/abstracts/theme';
 @use 'styles/abstracts/utilities';
+@use 'styles/abstracts/buttons';
 
 
 html {
@@ -215,3 +216,4 @@ ol {
 .users-dialog-panel .reactivate-button {
   color: var(--app-primary);
 }
+

@@ -90,10 +90,47 @@ export class UsersService {
   private loadUsers(): User[] {
     try {
       const storedUsers = localStorage.getItem(STORAGE_KEY);
-      return storedUsers ? (JSON.parse(storedUsers) as User[]) : DEFAULT_USERS;
+      if (!storedUsers) {
+        return DEFAULT_USERS;
+      }
+
+      const parsedUsers = JSON.parse(storedUsers);
+      return Array.isArray(parsedUsers) ? parsedUsers.map((user) => this.normalizeUser(user)) : DEFAULT_USERS;
     } catch {
       return DEFAULT_USERS;
     }
+  }
+
+  private normalizeUser(value: Partial<Omit<User, 'role'>> & { name?: string; role?: string }): User {
+    const legacyName = value.name?.trim().split(/\s+/) ?? [];
+    const role = value.role === 'Editor' ? 'Operador' : value.role;
+
+    return {
+      id: value.id ?? crypto.randomUUID(),
+      nombre: value.nombre ?? legacyName.shift() ?? 'Sin nombre',
+      apellidoPaterno: value.apellidoPaterno ?? legacyName.shift() ?? '',
+      apellidoMaterno: value.apellidoMaterno ?? legacyName.join(' '),
+      telefono: value.telefono ?? '',
+      email: value.email ?? '',
+      username: value.username ?? '',
+      role: role === 'Administrador' || role === 'Operador' || role === 'Consulta' ? role : 'Consulta',
+      specialty: value.specialty ?? '',
+      birthDate: value.birthDate ?? '',
+      position: value.position ?? '',
+      gender: value.gender ?? '',
+      curp: value.curp ?? '',
+      civilStatus: value.civilStatus ?? '',
+      workEmail: value.workEmail ?? '',
+      company: value.company ?? '',
+      workArea: value.workArea ?? '',
+      entryDate: value.entryDate ?? '',
+      limitCompany: value.limitCompany ?? false,
+      userType: value.userType === 'Externo' ? 'Externo' : 'Interno',
+      client: value.client ?? '',
+      active: value.active ?? true,
+      createdAt: value.createdAt ?? new Date().toISOString(),
+      deactivationReason: value.deactivationReason,
+    };
   }
 
   private saveUsers(users: User[]): void {
