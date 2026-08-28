@@ -1,0 +1,55 @@
+.app-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  min-height: 2.5rem;
+  padding: .6rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(15, 23, 42, .1);
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+
+
+//app buttons
+.app-button mat-icon { width: 1.05rem; height: 1.05rem; font-size: 1.05rem; }
+.app-button:hover { transform: translateY(-1px); box-shadow: 0 5px 12px rgba(15, 23, 42, .16); }
+.app-button:active { transform: translateY(0); box-shadow: 0 1px 3px rgba(15, 23, 42, .12); }
+.app-button:focus-visible, .app-icon-button:focus-visible { outline: 3px solid rgba(190, 0, 170, .25); outline-offset: 2px; }
+.app-button--primary { background: var(--app-button-primary) !important; color: #fff !important; }
+.app-button--primary:hover { background: var(--app-button-primary-hover) !important; }
+.app-button--submit { background: var(--app-button-primary) !important; color: #fff !important; }
+.app-button--submit:hover { background: var(--app-button-primary-hover) !important; }
+.app-button--create { background: var(--app-button-create) !important; color: #fff !important; }
+.app-button--create:hover { background: var(--app-button-create-hover) !important; }
+.app-button--primary mat-icon, .app-button--create mat-icon, .app-button--danger mat-icon { color: #fff !important; }
+.app-button--submit mat-icon { color: #fff !important; }
+.app-button--outline { border-color: var(--app-border); background: var(--app-surface); color: var(--app-text-primary); }
+.app-button--outline:hover { border-color: var(--app-button-primary); color: var(--app-button-primary); }
+.app-button--filter { min-height: 2.65rem; padding: .65rem .8rem; border-color: var(--app-border); border-radius: 8px; background: var(--app-surface); color: var(--app-text-primary); box-shadow: none; font-weight: 400; }
+.app-button--filter:hover { transform: none; border-color: var(--app-button-primary); background: var(--app-surface); color: var(--app-button-primary); box-shadow: none; }
+.app-button--filter mat-icon { width: 1rem; height: 1rem; font-size: 1rem; color: var(--app-button-primary) !important; }
+.app-button--text { min-height: auto; padding: .35rem .55rem; border-radius: 6px; background: transparent; color: var(--app-button-primary); box-shadow: none; }
+.app-button--text:hover { background: color-mix(in srgb, var(--app-button-primary) 8%, transparent); box-shadow: none; }
+.app-button--cancel { min-height: 2.5rem; padding: .55rem .7rem; border-radius: 8px; background: transparent; color: var(--app-primary); box-shadow: none; }
+.app-button--cancel:hover { background: color-mix(in srgb, var(--app-primary) 8%, transparent); box-shadow: none; }
+.app-button--danger { background: var(--app-button-danger) !important; color: #fff !important; }
+.app-button--danger:hover { background: var(--app-button-danger-hover) !important; }
+.app-button--disabled { background: var(--app-button-danger) !important; color: #fff !important; }
+.app-button--disabled:hover { background: var(--app-button-danger-hover) !important; }
+
+//app icon buttons
+.app-icon-button {display: inline-grid;width: 2.35rem;height: 2.35rem;place-items: center;padding: 0;border: 1px solid var(--app-button-icon-border) !important;border-radius: 10px;background: var(--app-button-icon-bg) !important;color: var(--app-button-icon-text) !important;font: inherit;cursor: pointer;box-shadow: 0 1px 3px rgba(15, 23, 42, .12);transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, color 160ms ease, transform 160ms ease;}
+.app-icon-button:hover { transform: translateY(-1px); box-shadow: 0 4px 9px rgba(15, 23, 42, .14); }
+.app-icon-button:active { transform: translateY(0); }
+.app-icon-button mat-icon { width: 1.05rem; height: 1.05rem; font-size: 1.05rem; color: currentColor !important; }
+.app-icon-button--edit, .app-icon-button--edit:hover, .app-icon-button--edit:focus-visible { border-color: var(--app-button-icon-border) !important; background: var(--app-button-icon-bg) !important; color: var(--app-button-icon-text) !important; }
+.app-icon-button--danger, .app-icon-button--danger:hover, .app-icon-button--danger:focus-visible { border-color: var(--app-button-icon-border) !important; background: var(--app-button-icon-bg) !important; color: #ff7f8d !important; }
+.app-icon-button--edit:focus-visible, .app-icon-button--danger:focus-visible { outline: 3px solid rgba(37, 99, 235, .2); outline-offset: 2px; }
