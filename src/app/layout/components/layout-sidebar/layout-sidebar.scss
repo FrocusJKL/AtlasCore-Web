@@ -305,10 +305,22 @@ mat-nav-list button {
 .user-profile {
     display: flex;
     align-items: center;
+    width: 100%;
     gap: .7rem;
     padding: .65rem;
+    border: 1px solid transparent;
     border-radius: 10px;
-    background: var(--app-background)
+    background: var(--app-background);
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.user-profile:hover {
+    background: rgba(var(--app-primary-rgb), .08);
+    // border-color: rgba(var(--app-primary-rgb), .16);
+    transform: scale(1.01)
 }
 
 .user-profile strong,
@@ -327,31 +339,12 @@ mat-nav-list button {
     font-size: .72rem
 }
 
-.settings-button {
-    flex: 0 0 2.35rem;
-    width: 2.35rem !important;
-    min-width: 2.35rem;
-    height: 2.35rem !important;
-    min-height: 2.35rem;
-    padding: 0 !important;
-    border-radius: 50%;
+.profile-settings-icon {
     margin-left: auto;
-    color: var(--app-primary) !important;
-    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease
-}
-
-.settings-button mat-icon {
     width: 1.05rem;
     height: 1.05rem;
-    margin: 0;
-    font-size: 1.05rem
-}
-
-.settings-button:hover {
-    border-color: var(--app-primary);
-    background: rgba(var(--app-primary-rgb), .08);
-    color: var(--app-primary);
-    transform: translateY(-1px)
+    font-size: 1.05rem;
+    color: var(--app-primary)
 }
 
 .avatar {
