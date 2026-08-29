@@ -46,6 +46,53 @@ body {
   box-sizing: border-box;
 }
 
+.module-page {
+  margin: 0 clamp(1rem, 1vw, 2.5rem);
+  padding: 1.1rem 0 1.5rem;
+}
+
+.module-page > .page-header,
+.module-page > .page-content {
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+}
+
+.module-page > .page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 72px;
+  padding: 1rem clamp(1.4rem, 2.8vw, 2.25rem);
+  border-bottom: 1px solid var(--app-border);
+  border-radius: 14px 14px 0 0;
+}
+
+.module-page > .page-content {
+  padding: 1.5rem clamp(1.4rem, 2.8vw, 2.25rem);
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+}
+
+.module-page > .page-header h1,
+.module-page > .page-header h2 {
+  margin: 0;
+  color: var(--app-text-primary);
+}
+
+.module-page > .page-header .eyebrow,
+.module-page > .page-header .subtitle {
+  margin: 0;
+  color: var(--app-text-secondary);
+  font-size: .8rem;
+}
+
+.module-page > .page-header .eyebrow {
+  margin-bottom: .3rem;
+  color: var(--app-text-primary);
+  font-weight: 700;
+}
+
 a {
   text-decoration: none;
   color: inherit;

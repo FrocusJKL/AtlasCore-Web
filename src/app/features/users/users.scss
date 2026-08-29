@@ -1,16 +1,6 @@
 .module-page {
   min-height: 100%;
 }
-.page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 72px;
-  padding: 0.85rem clamp(1rem, 2vw, 2rem);
-  background: var(--app-surface);
-  border-bottom: 1px solid var(--app-border);
-}
 .eyebrow,
 .subtitle {
   margin: 0;
@@ -32,9 +22,6 @@ h1 {
 }
 h2 {
   font-size: 1.3rem;
-}
-.page-content {
-  padding: 1.25rem clamp(1rem, 2vw, 2rem);
 }
 .toolbar {
   display: flex;

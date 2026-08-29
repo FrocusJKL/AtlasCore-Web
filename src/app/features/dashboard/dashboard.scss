@@ -2,16 +2,6 @@
 	min-height: 100%;
 }
 
-.page-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	min-height: 72px;
-	padding: .85rem clamp(1rem, 2vw, 2rem);
-	background: var(--app-surface);
-	border-bottom: 1px solid var(--app-border);
-}
-
 .eyebrow,
 .subtitle {
 	margin: 0;
@@ -29,8 +19,4 @@ h1 {
 	margin: 0;
 	color: var(--app-text-primary);
 	font-size: clamp(1.45rem, 2vw, 1.9rem);
-}
-
-.page-content {
-	padding: 1.25rem clamp(1rem, 2vw, 2rem);
 }
