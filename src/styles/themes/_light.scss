@@ -2,15 +2,15 @@
 .light-theme {
 	color-scheme: light;
 
-	--app-primary: #2563eb;
-	--app-primary-rgb: 37, 99, 235;
-	--app-background: #f5f7fb;
-	--app-surface: #ffffff;
-	--app-surface-raised: #ffffff;
-	--app-text-primary: #1e293b;
-	--app-text-secondary: #64748b;
-	--app-border: #e2e8f0;
-	--app-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+	--app-primary: var(--color-primary);
+	--app-primary-rgb: var(--color-primary-rgb);
+	--app-background: var(--color-background);
+	--app-surface: var(--color-surface);
+	--app-surface-raised: var(--color-surface);
+	--app-text-primary: var(--color-text);
+	--app-text-secondary: var(--color-text-muted);
+	--app-border: var(--color-border);
+	--app-shadow: var(--color-shadow);
 	--app-button-create: #ff4b00;
 	--app-button-create-hover: #e64300;
 	--app-button-primary: var(--app-primary);

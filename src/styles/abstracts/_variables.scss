@@ -5,26 +5,54 @@ $success: #22c55e;
 $warning: #f59e0b;
 $error: #ef4444;
 
-$spacing-xs: 4px;
-$spacing-sm: 8px;
+$spacing-xxs: 4px;
+$spacing-xs: 8px;
+$spacing-sm: 12px;
 $spacing-md: 16px;
 $spacing-lg: 24px;
 $spacing-xl: 32px;
+$spacing-2xl: 40px;
 
 $background: #f5f7fb;
-
 $text-primary: #1e293b;
 $text-secondary: #64748b;
-
 $border-color: #e2e8f0;
-
 $border-radius: 14px;
-
 $shadow: 0px 8px 24px rgba(0,0,0,.08);
 
 :root {
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 80px;
 
-    --sidebar-width: 260px;
-    --sidebar-collapsed-width: 80px;
+  --color-primary: #2563eb;
+  --color-primary-rgb: 37, 99, 235;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
 
+  --color-background: #f5f7fb;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+
+  --space-xxs: #{$spacing-xxs};
+  --space-xs: #{$spacing-xs};
+  --space-sm: #{$spacing-sm};
+  --space-md: #{$spacing-md};
+  --space-lg: #{$spacing-lg};
+  --space-xl: #{$spacing-xl};
+  --space-2xl: #{$spacing-2xl};
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  --page-max-width: 1600px;
+  --page-padding-x: clamp(1rem, 2vw, 2.5rem);
+  --page-padding-y: clamp(.9rem, 1.5vw, 1.5rem);
+  --page-gap: clamp(.75rem, 1.8vw, 1.5rem);
 }

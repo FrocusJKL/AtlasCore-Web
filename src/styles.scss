@@ -10,6 +10,18 @@
 @use 'styles/abstracts/buttons';
 
 
+:root {
+  --page-max-width: 1600px;
+  --page-padding-x: clamp(1rem, 2vw, 2.5rem);
+  --page-padding-y: clamp(.9rem, 1.5vw, 1.5rem);
+  --page-radius: 14px;
+  --page-border: 1px solid var(--app-border);
+  --page-gap: clamp(.75rem, 1.8vw, 1.5rem);
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 960px;
+  --breakpoint-lg: 1200px;
+}
+
 html {
   height: 100%;
   font-size: 13px;
@@ -47,14 +59,15 @@ body {
 }
 
 .module-page {
-  margin: 0 clamp(1rem, 1vw, 2.5rem);
-  padding: 1.1rem 0 1.5rem;
+  width: min(100%, var(--page-max-width));
+  margin: 0 auto;
+  padding: var(--page-padding-y) var(--page-padding-x) 1.5rem;
 }
 
 .module-page > .page-header,
 .module-page > .page-content {
   background: var(--app-surface);
-  border: 1px solid var(--app-border);
+  border: var(--page-border);
 }
 
 .module-page > .page-header {
@@ -63,15 +76,15 @@ body {
   justify-content: space-between;
   gap: 1rem;
   min-height: 72px;
-  padding: 1rem clamp(1.4rem, 2.8vw, 2.25rem);
-  border-bottom: 1px solid var(--app-border);
-  border-radius: 14px 14px 0 0;
+  padding: 1rem clamp(1.25rem, 2.5vw, 2.25rem);
+  border-bottom: var(--page-border);
+  border-radius: var(--page-radius) var(--page-radius) 0 0;
 }
 
 .module-page > .page-content {
-  padding: 1.5rem clamp(1.4rem, 2.8vw, 2.25rem);
+  padding: 1.5rem clamp(1.25rem, 2.5vw, 2.25rem);
   border-top: 0;
-  border-radius: 0 0 14px 14px;
+  border-radius: 0 0 var(--page-radius) var(--page-radius);
 }
 
 .module-page > .page-header h1,
@@ -91,6 +104,22 @@ body {
   margin-bottom: .3rem;
   color: var(--app-text-primary);
   font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .module-page {
+    padding-inline: .75rem;
+    padding-top: .75rem;
+  }
+
+  .module-page > .page-header {
+    min-height: 64px;
+    padding: .8rem 1rem;
+  }
+
+  .module-page > .page-content {
+    padding: 1rem;
+  }
 }
 
 a {

@@ -1,5 +1,5 @@
 <div class="module-page">
-	<header class="page-header">
+	<header class="page-header module-header">
 		<div>
 			<p class="eyebrow">Administración</p>
 			<h1>Usuarios</h1>
@@ -9,7 +9,7 @@
 	</header>
 
 	<section class="page-content">
-		<div class="toolbar" aria-label="Filtros de usuarios">
+		<div class="toolbar module-toolbar" aria-label="Filtros de usuarios">
 			<label class="search-field">
 				<span class="sr-only">Buscar usuarios</span>
 				<input #search type="search" placeholder="Buscar por nombre o correo" (input)="setSearchTerm(search.value)" />
@@ -27,7 +27,7 @@
 				(click)="openInactiveUsers()"><mat-icon>settings_backup_restore</mat-icon> Inhabilitados</button>
 		</div>
 
-		<div class="table-shell">
+		<div class="table-shell module-card">
 			<table>
 				<thead>
 					<tr><th>Usuario</th><th>Contacto</th><th>Cargo</th><th>Empresa / área</th><th>Tipo</th><th>Perfil</th><th class="actions-column">Acciones</th></tr>
