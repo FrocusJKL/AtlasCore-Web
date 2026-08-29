@@ -127,14 +127,7 @@ td span {
 .row-actions {
   white-space: nowrap;
 }
-button {
-  border: 0;
-  background: transparent;
-  color: var(--app-primary);
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
+
 .row-actions {
   display: flex;
   align-items: center;

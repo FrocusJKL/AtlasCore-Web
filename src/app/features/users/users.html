@@ -23,17 +23,8 @@
 					<option value="Consulta">Consulta</option>
 				</select>
 			</label>
-			<button mat-button class="app-button app-button--filter" type="button"
+			<button class="app-button app-button--filter" type="button"
 				(click)="openInactiveUsers()"><mat-icon>settings_backup_restore</mat-icon> Inhabilitados</button>
-
-
-			<button mat-button class="logout-button" type="button" aria-label="Cerrar sesión">
-		
-				<mat-icon>logout</mat-icon>
-		
-				<span class="logout-label">Cerrar sesión</span>
-		
-			</button>
 		</div>
 
 		<div class="table-shell">
@@ -51,10 +42,10 @@
 							<td><span class="type-badge">{{ user.userType }}</span></td>
 							<td><span class="role">{{ user.role }}</span></td>
 							<td class="row-actions">
-								<button class="app-icon-button app-icon-button--edit" type="button" matTooltip="Editar usuario"
+								<button class="app-button app-icon-button app-icon-button--edit" type="button" matTooltip="Editar usuario"
 									aria-label="Editar usuario" (click)="openEdit(user)"><mat-icon>edit</mat-icon>
 								</button>
-								<button class="app-icon-button app-icon-button--danger" type="button" matTooltip="Inhabilitar usuario"
+								<button class="app-button app-icon-button app-icon-button--danger" type="button" matTooltip="Inhabilitar usuario"
 									aria-label="Inhabilitar usuario" (click)="openDisable(user)"><mat-icon>person_off</mat-icon></button>
 							</td>
 						</tr>
