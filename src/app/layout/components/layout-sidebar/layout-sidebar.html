@@ -150,7 +150,7 @@
                 <small>Elige cómo quieres ver AtlasCore.</small>
             </div>
             <div class="theme-options" role="radiogroup" aria-label="Tema de la aplicación">
-                <button type="button" class="theme-option" [class.selected]="themeService.theme() === 'light'"
+                <button type="button" class="app-button--filter theme-option" [class.selected]="themeService.theme() === 'light'"
                     [attr.aria-checked]="themeService.theme() === 'light'" role="radio" (click)="themeService.setTheme('light')">
                     <mat-icon>light_mode</mat-icon>
                     <span>Claro</span>

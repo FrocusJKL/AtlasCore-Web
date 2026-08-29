@@ -153,7 +153,19 @@ ol {
 }
 
 .settings-dialog-panel .settings-modal-header {
-  padding: 1.35rem 1.5rem 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem .75rem;
+}
+
+.settings-dialog-panel .settings-eyebrow {
+  color: var(--app-text-secondary);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 
 .settings-dialog-panel .settings-modal-header h2 {
@@ -161,6 +173,10 @@ ol {
   color: var(--app-text-primary);
   font-size: 1.35rem;
   font-weight: 700;
+}
+
+.settings-dialog-panel .settings-modal-header button {
+  color: var(--app-text-secondary);
 }
 
 .settings-dialog-panel .theme-setting-copy {
@@ -178,16 +194,28 @@ ol {
 }
 
 .settings-dialog-panel .theme-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
   margin-top: 1rem;
 }
 
 .settings-dialog-panel .theme-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  width: 100%;
   min-height: 3.25rem;
+  padding: .75rem .9rem;
+  border: 1px solid var(--app-border);
   border-radius: 10px;
+  background: var(--app-surface);
+  color: var(--app-text-primary);
   font: inherit;
   font-size: .85rem;
   font-weight: 600;
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
 }
 
 .settings-dialog-panel .theme-option:hover {
@@ -195,101 +223,199 @@ ol {
   background: rgba(var(--app-primary-rgb), .06);
 }
 
-.settings-dialog-panel .settings-modal-header button {
-  color: var(--app-text-secondary);
+.settings-dialog-panel .theme-option.selected {
+  border-color: var(--app-primary);
+  background: rgba(var(--app-primary-rgb), .08);
+  box-shadow: inset 0 0 0 1px rgba(var(--app-primary-rgb), .14);
 }
 
-.users-dialog-panel {
+.settings-dialog-panel .theme-option mat-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  font-size: 1.1rem;
+}
+
+.settings-dialog-panel .theme-option span {
+  line-height: 1;
+}
+
+.app-dialog-panel {
   --mat-dialog-container-shape: 12px;
   --mat-dialog-container-elevation-shadow: 0 24px 60px rgba(15, 23, 42, .22);
 }
 
-.users-dialog-panel .mat-mdc-dialog-surface {
+.app-dialog-panel .mat-mdc-dialog-surface {
   overflow: hidden;
   border: 1px solid var(--app-border);
   background: var(--app-surface);
   color: var(--app-text-primary);
 }
 
-.users-dialog-panel .mat-mdc-dialog-content {
+.app-dialog-panel .mat-mdc-dialog-content {
   max-height: calc(92vh - 150px);
   padding: 0 1.5rem 1rem;
 }
 
-.users-dialog-panel .users-dialog-header {
+.app-dialog-panel .dialog-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 1rem;
   padding: 1.25rem 1.5rem .75rem;
 }
 
-.users-dialog-panel .dialog-eyebrow {
+.app-dialog-panel .dialog-eyebrow {
   color: var(--app-text-secondary);
   font-size: .78rem;
   font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 
-.users-dialog-panel .users-dialog-header h2 {
+.app-dialog-panel .dialog-header h2 {
   margin: .25rem 0 0;
   color: var(--app-text-primary);
   font-size: 1.3rem;
   font-weight: 700;
 }
 
-.users-dialog-panel .users-dialog-header button {
+.app-dialog-panel .dialog-header button {
   color: var(--app-text-secondary);
 }
 
-.users-dialog-panel .mat-mdc-dialog-actions {
+.app-dialog-panel .mat-mdc-dialog-actions {
   gap: .65rem;
   padding: .85rem 1.5rem 1.25rem;
 }
 
-.users-dialog-panel .disable-action {
+.app-dialog-panel .mat-mdc-dialog-content form {
+  display: grid;
+  gap: 1rem;
+}
+
+.app-dialog-panel .mat-mdc-dialog-content fieldset {
+  border: 1px solid var(--app-border);
+  border-radius: 10px;
+  padding: 1rem;
+  background: rgba(var(--app-primary-rgb), 0.02);
+}
+
+.app-dialog-panel .mat-mdc-dialog-content legend {
+  padding: 0 .35rem;
+  color: var(--app-text-primary);
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.app-dialog-panel .mat-mdc-dialog-content .form-intro,
+.app-dialog-panel .mat-mdc-dialog-content .dialog-description {
+  margin: .2rem 0 .8rem;
+  color: var(--app-text-secondary);
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+.app-dialog-panel .mat-mdc-dialog-content .form-grid {
+  display: grid;
+  gap: .85rem;
+}
+
+.app-dialog-panel .mat-mdc-dialog-content .two-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.app-dialog-panel .mat-mdc-dialog-content .three-columns {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.app-dialog-panel .mat-mdc-dialog-content label {
+  display: grid;
+  gap: .35rem;
+  color: var(--app-text-primary);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.app-dialog-panel .mat-mdc-dialog-content input,
+.app-dialog-panel .mat-mdc-dialog-content select,
+.app-dialog-panel .mat-mdc-dialog-content textarea {
+  width: 100%;
+  min-height: 2.65rem;
+  padding: .65rem .8rem;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  background: var(--app-surface);
+  color: var(--app-text-primary);
+  font: inherit;
+}
+
+.app-dialog-panel .mat-mdc-dialog-content textarea {
+  min-height: 4rem;
+  resize: vertical;
+}
+
+.app-dialog-panel .mat-mdc-dialog-content small {
+  color: var(--app-error, #dc2626);
+  font-weight: 400;
+}
+
+.app-dialog-panel .mat-mdc-dialog-content .checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 400;
+}
+
+.app-dialog-panel .mat-mdc-dialog-content .checkbox-label input {
+  width: 1rem;
+  min-height: 1rem;
+}
+
+.app-dialog-panel .disable-action {
   --mdc-filled-button-container-color: #ea7180;
   --mdc-filled-button-label-text-color: white;
 }
 
-.users-dialog-panel .dialog-description {
+.app-dialog-panel .dialog-description {
   margin: .25rem 0 1rem;
   color: var(--app-text-secondary);
   font-size: .8rem;
   line-height: 1.45;
 }
 
-.users-dialog-panel .dialog-search {
+.app-dialog-panel .dialog-search {
   display: block;
   max-width: 18rem;
   margin: 0 0 .75rem auto;
 }
 
-.users-dialog-panel .inactive-table-shell {
+.app-dialog-panel .inactive-table-shell {
   overflow: auto;
   border: 1px solid var(--app-border);
 }
 
-.users-dialog-panel .inactive-table {
+.app-dialog-panel .inactive-table {
   min-width: 760px;
   font-size: .76rem;
 }
 
-.users-dialog-panel .inactive-table th,
-.users-dialog-panel .inactive-table td {
+.app-dialog-panel .inactive-table th,
+.app-dialog-panel .inactive-table td {
   padding: .65rem .55rem;
   white-space: nowrap;
 }
 
-.users-dialog-panel .inactive-table tbody tr:nth-child(even) {
+.app-dialog-panel .inactive-table tbody tr:nth-child(even) {
   background: color-mix(in srgb, var(--app-border) 22%, transparent);
 }
 
-.users-dialog-panel .inactive-table small {
+.app-dialog-panel .inactive-table small {
   display: block;
   margin-top: .2rem;
   color: var(--app-text-secondary);
 }
 
-.users-dialog-panel .reactivate-button {
+.app-dialog-panel .reactivate-button {
   color: var(--app-primary);
 }
 

@@ -86,7 +86,7 @@ export class Users {
     this.userForm.reset({ nombre: '', apellidoPaterno: '', apellidoMaterno: '', telefono: '', email: '', username: '', password: '', role: 'Consulta', specialty: '', birthDate: '', position: '', gender: '', curp: '', civilStatus: '', workEmail: '', company: '', workArea: '', entryDate: '', limitCompany: false, userType: 'Interno', client: '', active: true });
     this.submitted.set(false);
     this.formDialogRef = this.dialog.open(this.userFormDialog, {
-      width: '920px', maxWidth: 'calc(100vw - 2rem)', maxHeight: '92vh', panelClass: 'users-dialog-panel',
+      width: '920px', maxWidth: 'calc(100vw - 2rem)', maxHeight: '92vh', panelClass: 'app-dialog-panel',
       ariaLabelledBy: 'user-form-title', autoFocus: 'first-tabbable',
     });
   }
@@ -96,7 +96,7 @@ export class Users {
     this.userForm.patchValue({ ...user, password: '' });
     this.submitted.set(false);
     this.formDialogRef = this.dialog.open(this.userFormDialog, {
-      width: '920px', maxWidth: 'calc(100vw - 2rem)', maxHeight: '92vh', panelClass: 'users-dialog-panel',
+      width: '920px', maxWidth: 'calc(100vw - 2rem)', maxHeight: '92vh', panelClass: 'app-dialog-panel',
       ariaLabelledBy: 'user-form-title', autoFocus: 'first-tabbable',
     });
   }
@@ -130,7 +130,7 @@ export class Users {
     this.deactivationReason.set('');
     this.disableSubmitted.set(false);
     this.disableDialogRef = this.dialog.open(this.disableDialog, {
-      width: '520px', maxWidth: 'calc(100vw - 2rem)', panelClass: 'users-dialog-panel',
+      width: '520px', maxWidth: 'calc(100vw - 2rem)', panelClass: 'app-dialog-panel',
       ariaLabelledBy: 'disable-title', autoFocus: 'first-tabbable',
     });
   }
@@ -138,7 +138,7 @@ export class Users {
   openInactiveUsers(): void {
     this.inactiveSearchTerm.set('');
     this.inactiveUsersDialogRef = this.dialog.open(this.inactiveUsersDialog, {
-      width: '920px', maxWidth: 'calc(100vw - 2rem)', maxHeight: '92vh', panelClass: 'users-dialog-panel',
+      width: '920px', maxWidth: 'calc(100vw - 2rem)', maxHeight: '92vh', panelClass: 'app-dialog-panel',
       ariaLabelledBy: 'inactive-users-title', autoFocus: 'first-tabbable',
     });
   }
