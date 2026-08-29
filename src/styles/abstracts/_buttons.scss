@@ -49,7 +49,7 @@
 .app-icon-button {display: inline-grid;width: 2.35rem;height: 2.35rem;place-items: center;padding: 0;border: 1px solid var(--app-button-icon-border) !important;border-radius: 10px;background: var(--app-button-icon-bg) !important;color: var(--app-button-icon-text) !important;font: inherit;cursor: pointer;box-shadow: 0 1px 3px rgba(15, 23, 42, .12);transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, color 160ms ease, transform 160ms ease;}
 .app-icon-button:hover { transform: translateY(-1px); box-shadow: 0 4px 9px rgba(15, 23, 42, .14); }
 .app-icon-button:active { transform: translateY(0); }
-.app-icon-button mat-icon { width: 1.05rem; height: 1.05rem; font-size: 1.05rem; color: currentColor !important; }
+.app-icon-button mat-icon { color: currentColor !important; }
 .app-icon-button--edit, .app-icon-button--edit:hover, .app-icon-button--edit:focus-visible { border-color: var(--app-button-icon-border) !important; background: var(--app-button-icon-bg) !important; color: var(--app-button-icon-text) !important; }
 .app-icon-button--danger, .app-icon-button--danger:hover, .app-icon-button--danger:focus-visible { border-color: var(--app-button-icon-border) !important; background: var(--app-button-icon-bg) !important; color: #ff7f8d !important; }
 .app-icon-button--edit:focus-visible, .app-icon-button--danger:focus-visible { outline: 3px solid rgba(37, 99, 235, .2); outline-offset: 2px; }

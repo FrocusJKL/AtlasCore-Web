@@ -369,16 +369,14 @@ mat-nav-list button {
 .logout-button {
     width: 100%;
     min-height: 2.35rem;
-    // padding: .625rem .625rem;
-    border-radius: 15px;
-    border: 1px solid transparent;
-    background: transparent;
+    // border: 1px solid var(--app-border);
+    border-radius: 10px;
     justify-content: flex-start;
     margin: .3rem 0;
-    color: var(--app-text-secondary);
-    font-size: .8125rem;
     font-weight: 500;
     transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+   
+
 
     mat-icon {
         width: 18px;
@@ -391,8 +389,8 @@ mat-nav-list button {
     &:hover {
         background: var(--app-surface);
         color: var(--app-text-primary);
-        box-shadow: 0 2px 6px rgba(15, 23, 42, .12);
-        // transform: scale(1.01);
+        box-shadow: var(--app-shadow);
+        
     }
 }
 

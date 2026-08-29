@@ -90,7 +90,7 @@ tbody tr:last-child td {
   border-bottom: 0;
 }
 td strong,
-td span:not(.role):not(.status) {
+td span:not(.role):not(.status):not(.type-badge) {
   display: block;
 }
 td span {
