@@ -240,14 +240,17 @@
     animation: submenu-enter 180ms ease both
 }
 
+
 .nav-group-toggle .chevron {
-    transform-origin: center;
-    transition: transform 180ms ease
+  transform-origin: center;
+  animation: chevron-close 180ms ease-out both;
 }
 
 .nav-group.is-open .nav-group-toggle .chevron {
-    transform: rotate(270deg)
+  animation-name: chevron-open;
 }
+
+
 
 .nav-item.active {
     border-color: rgba(var(--app-primary-rgb), .16);
@@ -448,6 +451,28 @@ mat-nav-list button {
         opacity: 1;
         transform: translateY(0)
     }
+}
+
+@keyframes chevron-open {
+  from {
+    opacity: 0.35;
+    transform: translateY(2px) scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes chevron-close {
+  from {
+    opacity: 0.35;
+    transform: translateY(-2px) scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (prefers-reduced-motion:reduce) {
