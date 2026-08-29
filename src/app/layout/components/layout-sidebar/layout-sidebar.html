@@ -108,21 +108,14 @@
 
     <div class="sidebar-footer">
 
-        <div class="user-profile">
+        <button class="user-profile" type="button" aria-label="Abrir configuración" (click)="openSettings()">
             <span class="avatar">JP</span>
             <div class="user-copy">
                 <strong>Juan Pablo</strong>
                 <small>Administrador</small>
             </div>
-            <button
-                mat-icon-button
-                class="app-icon-button settings-button"
-                type="button"
-                aria-label="Abrir configuración"
-                (click)="openSettings()">
-                <mat-icon>settings</mat-icon>
-            </button>
-        </div>
+            <!-- <mat-icon class="profile-settings-icon">settings</mat-icon> -->
+        </button>
 
         <button mat-button class="logout-button" type="button" aria-label="Cerrar sesión" (click)="logout()">
 
@@ -150,7 +143,7 @@
                 <small>Elige cómo quieres ver AtlasCore.</small>
             </div>
             <div class="theme-options" role="radiogroup" aria-label="Tema de la aplicación">
-                <button type="button" class="theme-option" [class.selected]="themeService.theme() === 'light'"
+                <button type="button" class="app-button--filter theme-option" [class.selected]="themeService.theme() === 'light'"
                     [attr.aria-checked]="themeService.theme() === 'light'" role="radio" (click)="themeService.setTheme('light')">
                     <mat-icon>light_mode</mat-icon>
                     <span>Claro</span>

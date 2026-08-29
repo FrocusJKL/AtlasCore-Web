@@ -226,20 +226,3 @@ select.invalid {
   border: 0;
 }
 
-@media (max-width: 640px) {
-  .page-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .page-header .app-button--create {
-    width: 100%;
-  }
-  .toolbar {
-    align-items: stretch;
-    flex-direction: column;
-  }
-  .two-columns,
-  .three-columns {
-    grid-template-columns: 1fr;
-  }
-}

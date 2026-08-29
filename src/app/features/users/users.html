@@ -1,5 +1,5 @@
 <div class="module-page">
-	<header class="page-header">
+	<header class="page-header module-header">
 		<div>
 			<p class="eyebrow">Administración</p>
 			<h1>Usuarios</h1>
@@ -9,7 +9,7 @@
 	</header>
 
 	<section class="page-content">
-		<div class="toolbar" aria-label="Filtros de usuarios">
+		<div class="toolbar module-toolbar" aria-label="Filtros de usuarios">
 			<label class="search-field">
 				<span class="sr-only">Buscar usuarios</span>
 				<input #search type="search" placeholder="Buscar por nombre o correo" (input)="setSearchTerm(search.value)" />
@@ -27,7 +27,7 @@
 				(click)="openInactiveUsers()"><mat-icon>settings_backup_restore</mat-icon> Inhabilitados</button>
 		</div>
 
-		<div class="table-shell">
+		<div class="table-shell module-card">
 			<table>
 				<thead>
 					<tr><th>Usuario</th><th>Contacto</th><th>Cargo</th><th>Empresa / área</th><th>Tipo</th><th>Perfil</th><th class="actions-column">Acciones</th></tr>
@@ -57,7 +57,7 @@
 	</section>
 
 	<ng-template #userFormDialog>
-		<div class="users-dialog-header">
+		<div class="dialog-header">
 			<div><span class="dialog-eyebrow">{{ editingUserId() ? 'Editar usuario' : 'Nuevo registro' }}</span><h2 mat-dialog-title id="user-form-title">{{ editingUserId() ? 'Actualizar usuario' : 'Crear usuario' }}</h2></div>
 			<button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar formulario" (click)="closeForm()"><mat-icon>close</mat-icon></button>
 		</div>
@@ -85,7 +85,7 @@
 	</ng-template>
 
 	<ng-template #disableDialog>
-		<div class="users-dialog-header"><div><span class="dialog-eyebrow">Gestión de acceso</span><h2 mat-dialog-title id="disable-title">Inhabilitar usuario</h2></div><button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar" (click)="closeDisable()"><mat-icon>close</mat-icon></button></div>
+		<div class="dialog-header"><div><span class="dialog-eyebrow">Gestión de acceso</span><h2 mat-dialog-title id="disable-title">Inhabilitar usuario</h2></div><button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar" (click)="closeDisable()"><mat-icon>close</mat-icon></button></div>
 		<mat-dialog-content>
 			@if (userToDisable(); as user) { <p class="confirmation-copy">¿Seguro que deseas inhabilitar al usuario <strong>{{ fullName(user) }}</strong>?</p> }
 			<label class="reason-field">Motivo de la inhabilitación<textarea rows="3" placeholder="Explica por qué se inhabilita este usuario" [value]="deactivationReason()" (input)="setDeactivationReason($any($event.target).value)" [class.invalid]="disableSubmitted() && !deactivationReason().trim()"></textarea>@if (disableSubmitted() && !deactivationReason().trim()) { <small>Indica un motivo para continuar.</small> }</label>
@@ -94,7 +94,7 @@
 	</ng-template>
 
 	<ng-template #inactiveUsersDialog>
-		<div class="users-dialog-header">
+		<div class="dialog-header">
 			<div><span class="dialog-eyebrow">Gestión de acceso</span><h2 mat-dialog-title id="inactive-users-title">Usuarios inhabilitados</h2></div>
 			<button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar usuarios inhabilitados" (click)="closeInactiveUsers()"><mat-icon>close</mat-icon></button>
 		</div>
