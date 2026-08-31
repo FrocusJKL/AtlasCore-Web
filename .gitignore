@@ -11,6 +11,10 @@
 npm-debug.log
 yarn-error.log
 
+# Angular cache
+/.angular/cache
+/.angular
+
 # IDEs and editors
 .idea/
 .project
@@ -30,7 +34,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
+.history/
 .sass-cache/
 /connect.lock
 /coverage
@@ -39,7 +43,6 @@ npm-debug.log
 testem.log
 /typings
 __screenshots__/
-/.angular
 
 # e2e
 /e2e/*.js
@@ -49,3 +52,14 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 package-lock.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment
+src/environments/*.local.t
+
