@@ -11,8 +11,8 @@
 	--app-text-secondary: var(--color-text-muted);
 	--app-border: var(--color-border);
 	--app-shadow: var(--color-shadow);
-	--app-button-create: #ff4b00;
-	--app-button-create-hover: #e64300;
+	--app-button-create: var(--app-primary);
+	--app-button-create-hover: var(--app-button-primary-hover);
 	--app-button-primary: var(--app-primary);
 	--app-button-primary-hover: #1d4ed8;
 	--app-button-danger: #ea7180;

@@ -10,8 +10,8 @@
 	--app-text-secondary: #cbd5e1;
 	--app-border: #393939;
 	--app-shadow: 0 2px 6px rgba(232, 233, 236, 0.12);
-	--app-button-create: #ff5a0a;
-	--app-button-create-hover: #ff6f2e;
+	--app-button-create: var(--app-primary);
+	--app-button-create-hover: var(--app-button-primary-hover);
 	--app-button-primary: var(--app-primary);
 	--app-button-primary-hover: #f27d3d;
 	--app-button-danger: #f0808e;
