@@ -5,14 +5,16 @@
 			<h1>Usuarios</h1>
 			<p class="subtitle">Gestiona los usuarios y permisos del sistema</p>
 		</div>
-		<button class="app-button app-button--create" type="button" (click)="openCreate()"><mat-icon>add</mat-icon><span>Nuevo usuario</span></button>
+		<button class="app-button app-button--create" type="button"
+			(click)="openCreate()"><mat-icon>add</mat-icon><span>Nuevo usuario</span></button>
 	</header>
 
 	<section class="page-content">
 		<div class="toolbar module-toolbar" aria-label="Filtros de usuarios">
 			<label class="search-field">
 				<span class="sr-only">Buscar usuarios</span>
-				<input #search type="search" placeholder="Buscar por nombre o correo" (input)="setSearchTerm(search.value)" />
+				<input #search type="search" placeholder="Buscar por nombre o correo"
+					(input)="setSearchTerm(search.value)" />
 			</label>
 			<label>
 				<span class="sr-only">Filtrar por rol</span>
@@ -30,27 +32,40 @@
 		<div class="table-shell module-card">
 			<table>
 				<thead>
-					<tr><th>Usuario</th><th>Contacto</th><th>Cargo</th><th>Empresa / área</th><th>Tipo</th><th>Perfil</th><th class="actions-column">Acciones</th></tr>
+					<tr>
+						<th>Usuario</th>
+						<th>Contacto</th>
+						<th>Cargo</th>
+						<th>Empresa / área</th>
+						<th>Tipo</th>
+						<th>Perfil</th>
+						<th class="actions-column">Acciones</th>
+					</tr>
 				</thead>
 				<tbody>
 					@for (user of filteredUsers(); track user.id) {
-						<tr>
-							<td><strong>{{ fullName(user) }}</strong><span>@{{ user.username }}</span></td>
-							<td><strong>{{ user.email }}</strong><span>{{ user.telefono }}</span></td>
-							<td>{{ user.position || 'Sin cargo' }}<span>{{ user.specialty || 'Sin especialidad' }}</span></td>
-							<td>{{ user.company || 'Sin empresa' }}<span>{{ user.workArea || 'Sin área' }}</span></td>
-							<td><span class="type-badge">{{ user.userType }}</span></td>
-							<td><span class="role">{{ user.role }}</span></td>
-							<td class="row-actions">
-								<button class="app-button app-icon-button app-icon-button--edit" type="button" matTooltip="Editar usuario"
-									aria-label="Editar usuario" (click)="openEdit(user)"><mat-icon>edit</mat-icon>
-								</button>
-								<button class="app-button app-icon-button app-icon-button--danger" type="button" matTooltip="Inhabilitar usuario"
-									aria-label="Inhabilitar usuario" (click)="openDisable(user)"><mat-icon>person_off</mat-icon></button>
-							</td>
-						</tr>
+					<tr>
+						<td><strong>{{ fullName(user) }}</strong><span>@{{ user.username }}</span></td>
+						<td><strong>{{ user.email }}</strong><span>{{ user.telefono }}</span></td>
+						<td>{{ user.position || 'Sin cargo' }}<span>{{ user.specialty || 'Sin especialidad' }}</span>
+						</td>
+						<td>{{ user.company || 'Sin empresa' }}<span>{{ user.workArea || 'Sin área' }}</span></td>
+						<td><span class="type-badge">{{ user.userType }}</span></td>
+						<td><span class="role">{{ user.role }}</span></td>
+						<td class="row-actions">
+							<button class="app-button app-icon-button app-icon-button--edit" type="button"
+								matTooltip="Editar usuario" aria-label="Editar usuario"
+								(click)="openEdit(user)"><mat-icon>edit</mat-icon>
+							</button>
+							<button class="app-button app-icon-button app-icon-button--danger" type="button"
+								matTooltip="Inhabilitar usuario" aria-label="Inhabilitar usuario"
+								(click)="openDisable(user)"><mat-icon>person_off</mat-icon></button>
+						</td>
+					</tr>
 					}
-					@empty { <tr><td class="empty-state" colspan="7">No hay usuarios activos que coincidan con los filtros.</td></tr> }
+					@empty { <tr>
+						<td class="empty-state" colspan="7">No hay usuarios activos que coincidan con los filtros.</td>
+					</tr> }
 				</tbody>
 			</table>
 		</div>
@@ -58,61 +73,159 @@
 
 	<ng-template #userFormDialog>
 		<div class="dialog-header">
-			<div><span class="dialog-eyebrow">{{ editingUserId() ? 'Editar usuario' : 'Nuevo registro' }}</span><h2 mat-dialog-title id="user-form-title">{{ editingUserId() ? 'Actualizar usuario' : 'Crear usuario' }}</h2></div>
-			<button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar formulario" (click)="closeForm()"><mat-icon>close</mat-icon></button>
+			<div><span class="dialog-eyebrow">{{ editingUserId() ? 'Editar usuario' : 'Nuevo registro' }}</span>
+				<h2 mat-dialog-title id="user-form-title">{{ editingUserId() ? 'Actualizar usuario' : 'Crear usuario' }}
+				</h2>
+			</div>
+			<button class="app-dialog-close-button" mat-dialog-close type="button" aria-label="Cerrar formulario"
+				(click)="closeForm()"><mat-icon>close</mat-icon>
+			</button>
 		</div>
 		<mat-dialog-content>
 			<form id="user-form" [formGroup]="userForm" (ngSubmit)="saveUser()" novalidate>
-					<p class="form-intro">Completa la información del usuario.</p>
-					<fieldset><legend>Información personal</legend><div class="form-grid three-columns">
-						<label>Nombre/s *<input formControlName="nombre" autocomplete="given-name" [class.invalid]="hasError('nombre')" />@if (hasError('nombre')) { <small>Campo obligatorio.</small> }</label>
-						<label>Apellido paterno *<input formControlName="apellidoPaterno" autocomplete="family-name" [class.invalid]="hasError('apellidoPaterno')" /></label>
-						<label>Apellido materno *<input formControlName="apellidoMaterno" [class.invalid]="hasError('apellidoMaterno')" /></label>
-						<label>Fecha de nacimiento<input type="date" formControlName="birthDate" /></label><label>Género<select formControlName="gender"><option value="">Selecciona</option><option>Femenino</option><option>Masculino</option><option>Otro</option></select></label><label>Estado civil<select formControlName="civilStatus"><option value="">Selecciona</option><option>Soltero/a</option><option>Casado/a</option><option>Divorciado/a</option><option>Viudo/a</option></select></label>
-						<label>CURP<input formControlName="curp" maxlength="18" /></label><label>Cargo<input formControlName="position" /></label><label>Especialidad<input formControlName="specialty" /></label>
-					</div></fieldset>
-					<fieldset><legend>Contacto y acceso</legend><div class="form-grid two-columns">
-						<label>Teléfono *<input formControlName="telefono" autocomplete="tel" [class.invalid]="hasError('telefono')" />@if (hasError('telefono')) { <small>Ingresa entre 10 y 30 caracteres.</small> }</label><label>Email personal *<input type="email" formControlName="email" autocomplete="email" [class.invalid]="hasError('email')" />@if (hasError('email')) { <small>Ingresa un correo válido.</small> }</label>
-						<label>Usuario *<input formControlName="username" autocomplete="username" [class.invalid]="hasError('username')" /></label><label>Contraseña <input type="password" formControlName="password" autocomplete="new-password" placeholder="Dejar vacío para no cambiar" /></label>
-						<label>Perfil de puesto *<select formControlName="role"><option value="Administrador">Administrador</option><option value="Operador">Operador</option><option value="Consulta">Consulta</option></select></label><label>Tipo de usuario<select formControlName="userType"><option value="Interno">Interno</option><option value="Externo">Externo</option></select></label>
-					</div></fieldset>
-					<fieldset><legend>Información laboral</legend><div class="form-grid three-columns">
-						<label>Email laboral<input type="email" formControlName="workEmail" /></label><label>Empresa<input formControlName="company" /></label><label>Área laboral<input formControlName="workArea" /></label><label>Fecha de ingreso<input type="date" formControlName="entryDate" /></label><label>Cliente<input formControlName="client" /></label><label class="checkbox-label"><input type="checkbox" formControlName="limitCompany" /> Limitar a empresa</label>
-					</div></fieldset>
-				</form>
+				<p class="form-intro">Completa la información del usuario.</p>
+				<fieldset>
+					<legend>Información personal</legend>
+					<div class="form-grid three-columns">
+						<label>Nombre/s *<input formControlName="nombre" autocomplete="given-name"
+								[class.invalid]="hasError('nombre')" />@if (hasError('nombre')) { <small>Campo
+								obligatorio.</small> }</label>
+						<label>Apellido paterno *<input formControlName="apellidoPaterno" autocomplete="family-name"
+								[class.invalid]="hasError('apellidoPaterno')" /></label>
+						<label>Apellido materno *<input formControlName="apellidoMaterno"
+								[class.invalid]="hasError('apellidoMaterno')" /></label>
+						<label>Fecha de nacimiento<input type="date"
+								formControlName="birthDate" /></label><label>Género<select formControlName="gender">
+								<option value="">Selecciona</option>
+								<option>Femenino</option>
+								<option>Masculino</option>
+								<option>Otro</option>
+							</select></label><label>Estado civil<select formControlName="civilStatus">
+								<option value="">Selecciona</option>
+								<option>Soltero/a</option>
+								<option>Casado/a</option>
+								<option>Divorciado/a</option>
+								<option>Viudo/a</option>
+							</select></label>
+						<label>CURP<input formControlName="curp" maxlength="18" /></label><label>Cargo<input
+								formControlName="position" /></label><label>Especialidad<input
+								formControlName="specialty" /></label>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Contacto y acceso</legend>
+					<div class="form-grid two-columns">
+						<label>Teléfono *<input formControlName="telefono" autocomplete="tel"
+								[class.invalid]="hasError('telefono')" />@if (hasError('telefono')) { <small>Ingresa
+								entre
+								10 y 30 caracteres.</small> }</label><label>Email personal *<input type="email"
+								formControlName="email" autocomplete="email" [class.invalid]="hasError('email')" />@if
+							(hasError('email')) { <small>Ingresa un correo válido.</small> }</label>
+						<label>Usuario *<input formControlName="username" autocomplete="username"
+								[class.invalid]="hasError('username')" /></label><label>Contraseña <input
+								type="password" formControlName="password" autocomplete="new-password"
+								placeholder="Dejar vacío para no cambiar" /></label>
+						<label>Perfil de puesto *<select formControlName="role">
+								<option value="Administrador">Administrador</option>
+								<option value="Operador">Operador</option>
+								<option value="Consulta">Consulta</option>
+							</select></label><label>Tipo de usuario<select formControlName="userType">
+								<option value="Interno">Interno</option>
+								<option value="Externo">Externo</option>
+							</select></label>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Información laboral</legend>
+					<div class="form-grid three-columns">
+						<label>Email laboral<input type="email"
+								formControlName="workEmail" /></label><label>Empresa<input
+								formControlName="company" /></label><label>Área laboral<input
+								formControlName="workArea" /></label><label>Fecha de ingreso<input type="date"
+								formControlName="entryDate" /></label><label>Cliente<input
+								formControlName="client" /></label><label class="checkbox-label"><input type="checkbox"
+								formControlName="limitCompany" /> Limitar a empresa</label>
+					</div>
+				</fieldset>
+			</form>
 		</mat-dialog-content>
-		<mat-dialog-actions align="end"><button class="app-button app-button--cancel" type="button" mat-dialog-close (click)="closeForm()">Cancelar</button><button class="app-button app-button--submit" type="submit" form="user-form">{{ editingUserId() ? 'Guardar cambios' : 'Crear usuario' }}</button></mat-dialog-actions>
+		<mat-dialog-actions align="end"><button class="app-button app-button--cancel" type="button" mat-dialog-close
+				(click)="closeForm()">Cancelar</button><button class="app-button app-button--submit" type="submit"
+				form="user-form">{{ editingUserId() ? 'Guardar cambios' : 'Crear usuario'
+				}}</button></mat-dialog-actions>
 	</ng-template>
 
 	<ng-template #disableDialog>
-		<div class="dialog-header"><div><span class="dialog-eyebrow">Gestión de acceso</span><h2 mat-dialog-title id="disable-title">Inhabilitar usuario</h2></div><button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar" (click)="closeDisable()"><mat-icon>close</mat-icon></button></div>
+		<div class="dialog-header">
+			<div><span class="dialog-eyebrow">Gestión de acceso</span>
+				<h2 mat-dialog-title id="disable-title">Inhabilitar usuario</h2>
+			</div><button class="app-dialog-close-button" mat-dialog-close type="button" aria-label="Cerrar"
+				(click)="closeDisable()"><mat-icon>close</mat-icon></button>
+		</div>
 		<mat-dialog-content>
-			@if (userToDisable(); as user) { <p class="confirmation-copy">¿Seguro que deseas inhabilitar al usuario <strong>{{ fullName(user) }}</strong>?</p> }
-			<label class="reason-field">Motivo de la inhabilitación<textarea rows="3" placeholder="Explica por qué se inhabilita este usuario" [value]="deactivationReason()" (input)="setDeactivationReason($any($event.target).value)" [class.invalid]="disableSubmitted() && !deactivationReason().trim()"></textarea>@if (disableSubmitted() && !deactivationReason().trim()) { <small>Indica un motivo para continuar.</small> }</label>
+			@if (userToDisable(); as user) { <p class="confirmation-copy">¿Seguro que deseas inhabilitar al usuario
+				<strong>{{ fullName(user) }}</strong>?
+			</p> }
+			<label class="reason-field">Motivo de la inhabilitación<textarea rows="3"
+					placeholder="Explica por qué se inhabilita este usuario" [value]="deactivationReason()"
+					(input)="setDeactivationReason($any($event.target).value)"
+					[class.invalid]="disableSubmitted() && !deactivationReason().trim()"></textarea>@if
+				(disableSubmitted()
+				&& !deactivationReason().trim()) { <small>Indica un motivo para continuar.</small> }</label>
 		</mat-dialog-content>
-		<mat-dialog-actions align="end"><button class="app-button app-button--cancel" type="button" mat-dialog-close (click)="closeDisable()">Cancelar</button><button class="app-button app-button--disabled" type="button" (click)="disableUser()">Inhabilitar usuario</button></mat-dialog-actions>
+		<mat-dialog-actions align="end"><button class="app-button app-button--cancel" type="button" mat-dialog-close
+				(click)="closeDisable()">Cancelar</button><button class="app-button app-button--disabled" type="button"
+				(click)="disableUser()">Inhabilitar usuario</button></mat-dialog-actions>
 	</ng-template>
 
 	<ng-template #inactiveUsersDialog>
 		<div class="dialog-header">
-			<div><span class="dialog-eyebrow">Gestión de acceso</span><h2 mat-dialog-title id="inactive-users-title">Usuarios inhabilitados</h2></div>
-			<button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar usuarios inhabilitados" (click)="closeInactiveUsers()"><mat-icon>close</mat-icon></button>
+			<div><span class="dialog-eyebrow">Gestión de acceso</span>
+				<h2 mat-dialog-title id="inactive-users-title">Usuarios inhabilitados</h2>
+			</div>
+			<button class="app-dialog-close-button" mat-dialog-close type="button" aria-label="Cerrar usuarios inhabilitados"
+				(click)="closeInactiveUsers()"><mat-icon>close</mat-icon></button>
 		</div>
 		<mat-dialog-content>
-			<p class="dialog-description">Los usuarios inhabilitados no aparecen en la vista principal ni pueden utilizar el sistema. Puedes reactivar cualquier usuario desde esta ventana.</p>
-			<label class="dialog-search"><span class="sr-only">Buscar usuarios inhabilitados</span><input #inactiveSearch type="search" placeholder="Buscar..." (input)="setInactiveSearchTerm(inactiveSearch.value)" /></label>
+			<p class="dialog-description">Los usuarios inhabilitados no aparecen en la vista principal ni pueden
+				utilizar el
+				sistema. Puedes reactivar cualquier usuario desde esta ventana.</p>
+			<label class="dialog-search"><span class="sr-only">Buscar usuarios inhabilitados</span><input
+					#inactiveSearch type="search" placeholder="Buscar..."
+					(input)="setInactiveSearchTerm(inactiveSearch.value)" /></label>
 			<div class="inactive-table-shell">
 				<table class="inactive-table">
-					<thead><tr><th>Nombre completo</th><th>Correo</th><th>Teléfono</th><th>Perfil de puesto</th><th>Motivo de la inhabilitación</th><th></th></tr></thead>
+					<thead>
+						<tr>
+							<th>Nombre completo</th>
+							<th>Correo</th>
+							<th>Teléfono</th>
+							<th>Perfil de puesto</th>
+							<th>Motivo de la inhabilitación</th>
+							<th></th>
+						</tr>
+					</thead>
 					<tbody>
 						@for (user of inactiveUsers(); track user.id) {
-							<tr><td><strong>{{ fullName(user) }}</strong><small>@{{ user.username }}</small></td><td>{{ user.email }}</td><td>{{ user.telefono }}</td><td>{{ user.role }}</td><td>{{ user.deactivationReason || 'Sin motivo registrado' }}</td><td><button mat-icon-button class="reactivate-button" type="button" aria-label="Reactivar usuario" matTooltip="Reactivar usuario" (click)="reactivateUser(user)"><mat-icon>person_add</mat-icon></button></td></tr>
+						<tr>
+							<td><strong>{{ fullName(user) }}</strong><small>@{{ user.username }}</small></td>
+							<td>{{ user.email }}</td>
+							<td>{{ user.telefono }}</td>
+							<td>{{ user.role }}</td>
+							<td>{{ user.deactivationReason || 'Sin motivo registrado' }}</td>
+							<td><button mat-icon-button class="reactivate-button" type="button"
+									aria-label="Reactivar usuario" matTooltip="Reactivar usuario"
+									(click)="reactivateUser(user)"><mat-icon>person_add</mat-icon></button></td>
+						</tr>
 						}
-						@empty { <tr><td class="empty-state" colspan="6">No hay usuarios inhabilitados.</td></tr> }
+						@empty { <tr>
+							<td class="empty-state" colspan="6">No hay usuarios inhabilitados.</td>
+						</tr> }
 					</tbody>
 				</table>
 			</div>
 		</mat-dialog-content>
-		<mat-dialog-actions align="end"><button class="app-button app-button--cancel" type="button" mat-dialog-close (click)="closeInactiveUsers()">Cerrar</button></mat-dialog-actions>
+		<mat-dialog-actions align="end"><button class="app-button app-button--cancel" type="button" mat-dialog-close
+				(click)="closeInactiveUsers()">Cerrar</button></mat-dialog-actions>
 	</ng-template>
 </div>

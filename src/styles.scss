@@ -189,41 +189,6 @@ ol {
   font-weight: 700;
 }
 
-.settings-dialog-panel .settings-close-button {
-  display: inline-grid;
-  place-items: center;
-  width: 2.35rem;
-  height: 2.35rem;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  background: transparent !important;
-  box-shadow: none !important;
-  color: var(--app-text-secondary);
-  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, color 180ms ease, box-shadow 180ms ease;
-}
-
-.settings-dialog-panel .settings-close-button:hover {
-  background: rgba(var(--app-primary-rgb), .08) !important;
-  border-color: rgba(var(--app-primary-rgb), .14);
-  color: var(--app-primary);
-  transform: scale(1.08);
-}
-
-.settings-dialog-panel .settings-close-button:active {
-  transform: scale(.96);
-}
-
-.settings-dialog-panel .settings-close-button:focus-visible {
-  outline: 3px solid rgba(var(--app-primary-rgb), .25);
-  outline-offset: 2px;
-}
-
-.settings-dialog-panel .settings-close-button mat-icon {
-  width: 1.1rem;
-  height: 1.1rem;
-  font-size: 1.1rem;
-}
-
 .settings-dialog-panel .settings-modal-header button {
   color: var(--app-text-secondary);
 }
@@ -271,9 +236,10 @@ ol {
   border-radius: 14px;
   background: var(--app-background);
   color: var(--app-text-primary);
-  font: inherit;
   text-align: left;
   transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  font: inherit;
+  cursor: pointer;
 }
 
 .settings-dialog-panel .theme-option:hover {

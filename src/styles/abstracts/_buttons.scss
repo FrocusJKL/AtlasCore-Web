@@ -64,6 +64,42 @@
 .app-icon-button:active { transform: translateY(0); }
 .app-icon-button mat-icon { width: 1.05rem; height: 1.05rem; font-size: 1.05rem; color: currentColor !important; }
 
+.app-dialog-close-button {
+  display: inline-grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--app-text-secondary);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.app-dialog-close-button:hover {
+  background: rgba(var(--app-primary-rgb), .08);
+  border-color: rgba(var(--app-primary-rgb), .14);
+  color: var(--app-primary);
+  transform: scale(1.08);
+}
+
+.app-dialog-close-button:active {
+  transform: scale(.96);
+}
+
+.app-dialog-close-button:focus-visible {
+  outline: 3px solid rgba(var(--app-primary-rgb), .25);
+  outline-offset: 2px;
+}
+
+.app-dialog-close-button mat-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  font-size: 1.1rem;
+}
 
 .app-icon-button--edit, .app-icon-button--edit:hover, .app-icon-button--edit:focus-visible { border-color: var(--app-button-icon-border) !important; background: var(--app-button-icon-bg) !important; color: var(--app-button-icon-text) !important; }
 .app-icon-button--danger, .app-icon-button--danger:hover, .app-icon-button--danger:focus-visible { border-color: var(--app-button-icon-border) !important; background: var(--app-button-icon-bg) !important; color: #ff7f8d !important; }
