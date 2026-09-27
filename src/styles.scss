@@ -3,11 +3,11 @@
 // components according to the Material 3 design spec.
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
-@use 'styles/abstracts/variables' as v;
-@use 'styles/abstracts/mixins';
-@use 'styles/abstracts/theme';
-@use 'styles/abstracts/utilities';
-@use 'styles/abstracts/buttons';
+@use 'styles/core/variables' as v;
+@use 'styles/core/mixins';
+@use 'styles/core/theme';
+@use 'styles/core/utilities';
+@use 'styles/core/buttons';
 
 
 :root {
